@@ -1,0 +1,340 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+   
+:root {
+    --body-color: #e4e9f7;
+    --sidebar-color: #fff;
+    --primary-color: #457B9D;
+    --primary-color-hover: #FB8500;
+    --secondary-color: #0096c7;
+    --primary-color-light: #f6f5ff;
+    --toggle-color: #ddd;
+    --text-color: #707070;
+
+    --tran-01: all 0.1s ease-in-out;
+    --tran-02: all 0.2s ease-in-out;
+    --tran-03: all 0.3s ease-in-out;
+    --tran-04: all 0.4s ease-in-out;
+    --tran-05: all 0.5s ease-in-out;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+}
+
+.body-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+   
+.navbar {
+    width: 100%;
+    margin-top: 10px;
+    height: 60px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    /* box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.2); */
+}
+
+.logo {
+    font-size: 50px;
+
+    margin: auto 20px;
+    width: 50px;
+}
+
+.logo a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.links {
+    display: flex;
+    margin: auto 0;
+    margin-right: 30px;
+    width: 100%;
+    height: auto;
+
+    align-content: flex-end;
+    justify-content: right;
+}
+
+.link {
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0 20px;
+    height: auto;
+
+    transition: var(--tran-03);
+}
+
+.text-link {
+    position: relative;
+    cursor: pointer;
+    transition: var(--tran-02);
+}
+
+.text-link:hover {
+    color: var(--primary-color-hover);
+    transition: var(--tran-02);
+}
+
+.text-link::before {
+    content:'';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    height: 3px;
+    width: 0;
+    background: #000;
+    border-radius: 25px;
+    
+    visibility: hidden;
+    transition: var(--tran-02);
+}
+
+.text-link:hover:before {
+    visibility: visible;
+    width: 100%;
+    background: var(--primary-color-hover);
+}
+
+.text-link-alt {
+    background: #000;
+    border-radius: 6px;
+    color: #fff;
+    padding: 7px 10px;
+    margin: 4px;
+    cursor: pointer;
+
+    transition: var(--tran-02);
+}
+
+.text-link-alt:hover {
+    padding: 7px 14px;
+    margin: 0px;
+
+    transition: var(--tran-02);
+
+    box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.3);
+}
+
+.a-link {
+    text-decoration: none;
+    color: #000;
+    height: auto;
+    padding: 7px 0;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+}
+
+.dropdown:hover .dropdown-content{
+    display: block;
+    padding: 7px 0;
+    position: absolute;
+}
+
+.dropdown-content a {
+    text-decoration: none;
+    display: block;
+}
+
+.container{
+    position: relative;
+    max-width:450px;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.3);
+    color: #000;
+    overflow: hidden;
+}
+
+.container .form{
+    padding: 30px;
+    width: 50%;
+    background-color: #fff;
+    transition: margin-left 0.2s ease;
+}
+
+.container .signup{
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+.container.active .signup{
+    opacity: 1;
+    transition: opacity 0.1s ease;
+}
+
+.container.active .login{
+    margin-left: -50%;
+    opacity: 0;
+    transition: margin-left 0.2s ease, opacity 0.2s ease;
+}
+
+.container.active .forms{
+    height: auto;
+    transition: height 0.2s ease;
+}
+
+.container .forms{
+    display: flex;
+    align-items: center;
+    width: 200%;
+    height: 450px;
+    transition: height 0.2s ease;
+}
+
+.container .form .title{
+    position: relative;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.form .title::before{
+    content:'';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: #457B9D;
+    border-radius: 25px;
+}
+
+.form .input-field{
+    margin-top: 30px;
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
+
+.input-field input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0 35px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid){
+    border-bottom-color: #457B9D;
+}
+
+.input-field i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 23px;
+}
+
+.input-field input:is(:focus, :valid) ~ i{
+    color: #457B9D;
+}
+
+.input-field i.icon{
+    left: 0;
+}
+
+.input-field i.showHidePw{
+    right: 0;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.form .checkbox-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.checkbox-text .checkbox-content {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-content input {
+    margin: 0 8px -2px 4px;
+    accent-color: var(--primary-color);
+}
+
+.form a{
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.form .text{
+    font-size: 14px;
+}
+
+.form a:hover{
+    text-decoration: underline;
+}
+
+.form .button{
+    margin-top: 35px;
+}
+
+.form .button input{
+    border: none;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form .login-signup{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.notification{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: .5rem;
+    font-size: 16px;
+    padding: 20px;
+    width: 450px;
+    box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 30%);
+}
+
+.notification.is-danger{
+    background-color: rgb(255, 109, 109);
+}
