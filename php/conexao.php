@@ -2,7 +2,7 @@
 		$localhost = "localhost";
 		$user = "root";
 		$password = "12345";
-		$banco = "campanha_agasalho2";
+		$banco = "campanha_agasalho";
 
 		$conn = mysqli_connect($localhost, $user, $password, $banco);
 

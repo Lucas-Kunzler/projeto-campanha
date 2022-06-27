@@ -26,7 +26,8 @@ if($result){
     
 echo $nome;
 echo "<br></br>id=";
-echo $idC;
+$_SESSION['idC'] = $idC;
+echo $_SESSION['idC'];
 ?></h2>
 <h2><a href="logout.php">Sair</a></h2>
 <a  onclick="return confirm('Tem certeza que deseja deletar este registro?')" href="excluirconta.php">Excluir</a>
@@ -58,7 +59,7 @@ echo $idC;
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="gerente_procurar.php">
                     <i class="uil uil-apps"></i>
                     <span class="link-name">Centros de Caridade</span>
                 </a>

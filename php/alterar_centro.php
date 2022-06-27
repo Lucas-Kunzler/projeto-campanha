@@ -36,25 +36,18 @@
         </div>
     </div>
 <?php
+include_once "conexao.php";
     $codigo = $_GET['codigo'];
-    $nome = $_GET['nome'];
-    $estado = $_GET['estado'];
-    $cidade = $_GET['cidade'];
-    $bairro = $_GET['bairro'];
-    $rua = $_GET['rua'];
-    $numero = $_GET['numero'];
-    $observacao = $_GET['observacoes'];
-    $meio = $_GET['meio'];
-    $abertura = $_GET['abertura'];
-    $fechamento = $_GET['fechamento'];
-    $flroupas = $_GET['roupas'];
-    $flcomidas = $_GET['comidas'];
-    $flremedios = $_GET['remedios'];
-    $flnolocal = $_GET['nolocal'];
-    $flagenhorario = $_GET['agenhorario'];
-    $flbuscamosvc = $_GET['buscamosvc'];
-    $gerente = $_GET['gerente'];
-?>
+    $sql = "SELECT * FROM centros where idCentros = $codigo";
+    $result = mysqli_query($conn, $sql);
+    if (!$conn)
+    {
+        echo  "<script>alert('Não foi possível conectar ao Banco de Dados!');</script>";
+        header('Location: p_prod.php');
+    }
+    $row = mysqli_fetch_array($result, MYSQLI_NUM);
+    $gerente = $row[9];
+    ?>
     <div class="centro-popup">
         <div class="popup">
             <form action="inserir.php" method="post" enctype="multipart/form-data">
@@ -62,12 +55,12 @@
                 <hr>
                 <div class="form-divs">
                     <div class="form-div nome">
-                        <input type="text" class="input-field" name="nome" placeholder=" " value="<?php echo $nome?>" required>
+                        <input type="text" class="input-field" name="nome" placeholder=" " value="<?php echo $row[2]?>" required>
                         <label class="form-label">Nome do Centro</label>
                     </div>
                     <div class="form-div">
                         <select name="estado" id="estado" class="select input-field">
-                            <option selected value="<?php echo $estado?>"><?php echo $estado?><i class="uil uil-sort"></i></option>
+                            <option selected value="<?php echo $estado?>"><?php echo $row[3]?><i class="uil uil-sort"></i></option>
                             <option value="AC">AC</option>
                             <option value="AL">AL</option>
                             <option value="AP">AP</option>
@@ -101,25 +94,25 @@
                         
                     </div>
                     <div class="form-div">
-                        <input type="text" class="input-field"name="cidade" placeholder=" " value="<?php echo $cidade?>" required>
+                        <input type="text" class="input-field"name="cidade" placeholder=" " value="<?php echo $row[4]?>" required>
                         <label class="form-label">Cidade</label>
                     </div>
                     <div class="form-div">
-                        <input type="text" class="input-field"name="bairro" placeholder=" " value="<?php echo $bairro?>" required>
+                        <input type="text" class="input-field"name="bairro" placeholder=" " value="<?php echo $row[5]?>" required>
                         <label class="form-label">Bairro</label>
     
                     </div>
                     <div class="form-div">
-                        <input type="text" class="input-field"name="rua" placeholder=" " value="<?php echo $rua?>" required>
+                        <input type="text" class="input-field"name="rua" placeholder=" " value="<?php echo $row[6]?>" required>
                         <label class="form-label">Rua</label>
     
                     </div>
                     <div class="form-div">
-                        <input type="number" class="input-field" name="numero" placeholder=" " value="<?php echo $numero?>" required>
+                        <input type="number" class="input-field" name="numero" placeholder=" " value="<?php echo $row[7]?>" required>
                         <label class="form-label">Número</label>
                     </div>
                     <div class="form-div">
-                        <input type="text" class="input-field" name="observacao" placeholder=" " value="<?php echo $observacao?>" required>
+                        <input type="text" class="input-field" name="observacao" placeholder=" " value="<?php echo $row[8]?>" required>
                         <label class="form-label">Observação</label>
                     </div>
                     <!-- <div class="form-div">
@@ -130,19 +123,20 @@
                     <div class="form-div">
                         <select name="gerente" id="gerente" class="select input-field">
                             <?php
-                            include_once 'conexao.php';
+
                                 $sql = "SELECT idColaboradores,nome FROM campanha_agasalho.colaboradores";
-                                $result = mysqli_query($conn, $sql);
+                                $resultt = mysqli_query($conn, $sql);
+                                if($resultt){
                                 $sql1 = "select nome from colaboradores where idColaboradores = $gerente";
                                 $result2 = mysqli_query($conn, $sql1);
                                 $row2 = mysqli_fetch_array($result2, MYSQLI_NUM);
-                                if($result){
                                 echo "<option disabled selected> $row2[0] <i class='uil uil-sort'></i></option>";
-                                while ($row = mysqli_fetch_array($result, MYSQLI_NUM)){
+                                while ($roww = mysqli_fetch_array($resultt, MYSQLI_NUM)){
                             ?>
-                            <option value="<?php echo "$row[1]";?>"><?php echo "$row[1]";?></option>
-                            <?php  }
-                                }
+                            <option value="<?php echo "$roww[1]";?>"><?php echo "$roww[1]";?></option>
+                            <?php  
+                            }
+                            }
                             ?>
                            
                         </select>
@@ -151,11 +145,11 @@
                         
                     </div>
                     <div class="form-div horario">
-                        <input type="time" class="input-field" name="hab" placeholder=" " value="<?php echo $abertura?>" required>
+                        <input type="time" class="input-field" name="hab" placeholder=" " value="<?php echo $row[10]?>" required>
                         <label class="form-label">Horario de Abertura</label>
                     </div>
                     <div class="form-div horario">
-                        <input type="time" class="input-field" name="hfe" placeholder=" " value="<?php echo $fechamento?>" required>
+                        <input type="time" class="input-field" name="hfe" placeholder=" " value="<?php echo $row[11]?>" required>
                         <label class="form-label">Horario de Fechamento</label>
                     </div>
                     <div class="checkbox">
@@ -163,15 +157,15 @@
                             <legend>Itens</legend>
                             <div class="fieldset-divs">
                                 <div class="fieldset-div">
-                                    <input type="checkbox" value="S" name="roupas" <?=($flroupas=='S'?'checked':'')?>>
+                                    <input type="checkbox" value="S" name="roupas" <?=($row[12]=='S'?'checked':'')?>>
                                     <label>Roupas</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="checkbox" value="S" name="comidas" <?=($flcomidas=='S'?'checked':'')?>>
+                                    <input type="checkbox" value="S" name="comidas" <?=($row[13]=='S'?'checked':'')?>>
                                     <label>Comida</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="checkbox" value="S" name="remedios" <?=($flremedios=='S'?'checked':'')?>>
+                                    <input type="checkbox" value="S" name="remedios" <?=($row[14]=='S'?'checked':'')?>>
                                     <label>Remédios</label>
                                 </div>
                             </div>
@@ -182,15 +176,15 @@
                             <legend>Meios de doação</legend>
                             <div class="fieldset-divs">
                                 <div class="fieldset-div">
-                                    <input type="checkbox" value="S" name="nolocal" <?=($flnolocal=='S'?'checked':'')?>>
+                                    <input type="checkbox" value="S" name="nolocal" <?=($row[15]=='S'?'checked':'')?>>
                                     <label>No Local</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="checkbox" value="S" name="agenhorario" <?=($flagenhorario=='S'?'checked':'')?>>
+                                    <input type="checkbox" value="S" name="agenhorario" <?=($row[16]=='S'?'checked':'')?>>
                                     <label>Agendar horário</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="checkbox" value="S" name="buscamosvc" <?=($flbuscamosvc=='S'?'checked':'')?>>
+                                    <input type="checkbox" value="S" name="buscamosvc" <?=($row[17]=='S'?'checked':'')?>>
                                     <label>Buscamos pra você</label>
                                 </div>
                             </div>
@@ -200,7 +194,8 @@
                         <div class="image-add">
                             
                             <label for="imagem">Imagem:</label>
-                            <input type="file" name="arquivo">
+                            <input type="file" name="arquivo" value="<?php echo $row[1]?>">
+                            
 
                         </div>
                         <section class="area-progresso">

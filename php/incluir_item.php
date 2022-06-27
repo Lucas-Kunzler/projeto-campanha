@@ -47,6 +47,24 @@
                         <label class="form-label">Item</label>
                     </div>
                     <div class="form-div">
+                        <select name="centro" id="centro" class="select input-field">
+                    <?php
+                    include_once "conexao.php";
+                    session_start();
+                                $codigo = $_SESSION['idC'];
+                                $sql1 = "select idCentros, nome from centros where gerente = $codigo";
+                                $result2 = mysqli_query($conn, $sql1);
+                                
+                                echo "<option disabled selected> Selecione o Centro <i class='uil uil-sort'></i></option>";
+                                while ($row2 = mysqli_fetch_array($result2, MYSQLI_NUM)){
+                            ?>
+                            <option value="<?php echo "$row2[1]";?>"><?php echo "$row2[1]";?></option>
+                            <?php  
+                            }
+                    ?>
+                    </select>
+                    </div>
+                    <div class="form-div">
                         <input type="number" class="input-field" name="quant" placeholder=" " required>
                         <label class="form-label">Quantidade</label>
                     </div>
@@ -54,22 +72,7 @@
                         <input type="text" class="input-field" name="tam" placeholder=" " required>
                         <label class="form-label">Tamanho</label>
                     </div>
-                    <div class="form-div">
-                        <input type="text" class="input-field" name="observacao" placeholder=" " required>
-                        <label class="form-label">Observação</label>
-                    </div>
-                    <!-- <div class="form-div">
-                        <input type="text" class="input-field"name="itens" placeholder=" " required>
-                        <label class="form-label">Itens</label>
-                    </div> -->
-                    <div class="form-div horario">
-                        <input type="time" class="input-field" name="hab" placeholder=" " required>
-                        <label class="form-label">Horario de Abertura</label>
-                    </div>
-                    <div class="form-div horario">
-                        <input type="time" class="input-field" name="hfe" placeholder=" " required>
-                        <label class="form-label">Horario de Fechamento</label>
-                    </div>
+                    
                     <div class="checkbox">
                         <div class="input-field">
                             <legend>Categoria</legend>
@@ -89,30 +92,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="checkbox">
-                        <div class="input-field">
-                            <legend>Sexo</legend>
-                            <div class="fieldset-divs">
-                                <div class="fieldset-div">
-                                    <input type="checkbox" class="sexo" id="sexo1">
-                                    <label class="label">Masculino</label>
-                                </div>
-                                <div class="fieldset-div">
-                                    <input type="checkbox" class="sexo" id="sexo2">
-                                    <label class="label">Feminino</label>
-                                </div>
-                                <div class="fieldset-div">
-                                    <input type="checkbox" class="sexo" id="sexo3">
-                                    <label class="label">Unisex</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-div desc">
-                        <textarea name="" class="input-field" placeholder=" "></textarea>
-                        <label class="form-label">Descrição</label>
-                    </div>
-                    <!-- <div class="checkbox cor">
+                    <div class="checkbox cor">
                         <div class="input-field">
                             <legend>Cor</legend>
                             <div class="fieldset-divs">
@@ -190,7 +170,27 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+                    <div class="checkbox">
+                        <div class="input-field">
+                            <legend>Sexo</legend>
+                            <div class="fieldset-divs">
+                                <div class="fieldset-div">
+                                    <input type="checkbox" name="sexo" id="sexo1" onClick="ckChange(this)">
+                                    <label>Masculino</label>
+                                </div>
+                                <div class="fieldset-div">
+                                    <input type="checkbox" name="sexo" id="sexo2" onClick="ckChange(this)">
+                                    <label>Feminino</label>
+                                </div>
+                                <div class="fieldset-div">
+                                    <input type="checkbox" name="sexo" id="sexo3" onClick="ckChange(this)">
+                                    <label>Unisex</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     </div>
                         <div class="buttons">
                             <input type="submit" class="button button2" value="Salvar" required>
