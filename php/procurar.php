@@ -236,10 +236,11 @@
                     }
                 }
                     ?>
-                    <div class="box-behind">
-        
-                    </div>
                 </div>
+                <div class="box-behind">
+    
+                </div>
+            </div>
             </div>
         <?php
             }  

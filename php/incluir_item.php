@@ -35,7 +35,6 @@
             </div>
         </div>
     </div>
-
     <div class="centro-popup">
         <div class="popup">
             <form action="inserir.php" method="post" enctype="multipart/form-data">
@@ -58,7 +57,7 @@
                                 $codigo = $_SESSION['idC'];
                                 $sql1 = "select idCentros, nome from centros where gerente = $codigo";
                                 $result2 = mysqli_query($conn, $sql1);
-                                
+
                                 echo "<option disabled selected> Selecione o Centro <i class='uil uil-sort'></i></option>";
                                 while ($row2 = mysqli_fetch_array($result2, MYSQLI_NUM)){
                             ?>
