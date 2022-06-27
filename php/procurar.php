@@ -44,6 +44,10 @@
     
 
     </div>
+    <?php
+    session_start();
+    if(isset($_SESSION['idC'])){
+    ?>
     <a href="incluir_centro.php">
         <div class='button-sqr button-add'>
             <i class="uil uil-plus"></i>
@@ -55,7 +59,10 @@
         </div>
     </a>
     <?php
-        session_start();
+    }
+    ?>
+    <?php
+        
         teste();
         echo "</div>";
         function teste() {

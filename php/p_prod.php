@@ -109,13 +109,14 @@
         <table class="table">
             <thead>
                 <tr class="thead">
-                    <th>Nome</th>
+                    <th>Item</th>
                     <th>Quantidade</th>
                     <th>Tamanho</th>
                     <th>Gênero</th>
                     <th>Cor</th>
                     <th>Categoria</th>
-                    <th>Necessidade</th>
+                    <th>Centro</th>
+                    <th>Setor</th>
                 </tr>
             </thead>
             <tbody>
@@ -132,6 +133,7 @@
                     <td class="table-cell"><?php echo $row[5];?></td>
                     <td class="table-cell"><?php echo $row[6];?></td>
                     <td class="table-cell"><?php echo $row[7];?></td>
+                    <td class="table-cell"><?php echo $row[8];?></td>
                 </tr>
                 <?php
                 }  
