@@ -136,8 +136,17 @@
                         ?>
                         <div class="muni">
                             <div class="image">
-                                <i class="uil uil-building"></i>
-                                <?php echo $row[1]?>
+                                <?php
+                                    if(empty($row[1])){
+                                ?>
+                                        <i class="uil uil-building"></i>
+                                <?php
+                                    } else {
+                                ?>
+                                        <img src="<?php echo $row[1]?>" alt="Foto do Centro" class="foto-centro">
+                                <?php
+                                    }
+                                ?>
                             </div>
                             <div class="infos">
                                 <div class="infos-infos">
@@ -215,31 +224,28 @@
                         </div>
                         <?php
                         if(isset($_SESSION['idC'])){
-                        if($_SESSION['idC'] == $row[9]){
+                            if($_SESSION['idC'] == $row[9]){
                         ?>
-                        <div class="buttons">
-                            <a href="alterar_centro.php?codigo=<?php echo $row[0]?>">
-                                <div class="button-edit button button-alt">
-                                    <i class="uil uil-pen"></i>
-                                    Editar
+                                <div class="buttons">
+                                    <a href="alterar_centro.php?codigo=<?php echo $row[0]?>">
+                                        <div class="button-edit button button-alt">
+                                            <i class="uil uil-pen"></i>
+                                            Editar
+                                        </div>
+                                    </a>
+                                    <a href="excluircentro.php?codigo=<?php echo $row[0];?>">
+                                        <div class="button-delete button button-alt">
+                                            <i class="uil uil-trash-alt"></i>
+                                            Excluir
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
-                            <a href="excluircentro.php?codigo=<?php echo $row[0];?>">
-                                <div class="button-delete button button-alt">
-                                    <i class="uil uil-trash-alt"></i>
-                                    Excluir
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <?php
-                    }
-                }
+                            <?php
+                            }
+                        }
                     ?>
                 </div>
-                <div class="box-behind">
-    
-                </div>
+                <div class="box-behind"></div>
             </div>
             </div>
         <?php

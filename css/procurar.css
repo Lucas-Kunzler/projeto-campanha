@@ -302,11 +302,21 @@ button:hover {
 
 .muni .image {
   display: flex;
-  margin: auto 40px;
-  width: 150px;
-  height: 100%;
+  align-items: center;
+
+  margin: 20px auto;
+  width: 11rem;
+  height: 11rem;
   font-size: 100px;
   color: var(--secondary-color);
+}
+
+.muni .foto-centro {
+  width: 11rem;
+  height: 11rem;
+  border-radius: .5rem;
+  font-size: 16px;
+  object-fit: cover;
 }
 
 .muni-add .image-add {

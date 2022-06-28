@@ -112,7 +112,7 @@
                     <th>Item</th>
                     <th>Quantidade</th>
                     <th>Tamanho</th>
-                    <th>Gênero</th>
+                    <th>Sexo</th>
                     <th>Cor</th>
                     <th>Categoria</th>
                     <th>Centro</th>

@@ -59,7 +59,7 @@ echo $_SESSION['idC'];
                 </a>
             </li>
             <li>
-                <a href="gerente_procurar.php">
+                <a href="procurar.php">
                     <i class="uil uil-apps"></i>
                     <span class="link-name">Centros de Caridade</span>
                 </a>
