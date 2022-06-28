@@ -113,7 +113,7 @@
                     <th>Quantidade</th>
                     <th>Tamanho</th>
                     <th>Sexo</th>
-                    <th>Cor</th>
+                    <th>Descrição</th>
                     <th>Categoria</th>
                     <th>Centro</th>
                     <th>Setor</th>
@@ -131,7 +131,29 @@
                     <td class="table-cell"><?php echo $row[3];?></td>
                     <td class="table-cell"><?php echo $row[4];?></td>
                     <td class="table-cell"><?php echo $row[5];?></td>
-                    <td class="table-cell"><?php echo $row[6];?></td>
+                    <td class="table-cell">
+                        <?php
+                            if($row[6] == 'S'){
+                                echo "<div class='item-class'>";
+                                echo "<div class='roupa'>Roupa 👚</div>";
+                                echo "</div>";
+                            };
+                        ?>
+                        <?php
+                            if($row[7] == 'S'){
+                                echo "<div class='item-class'>";
+                                echo "<div class='comida'>Comida 🍕</div>";
+                                echo "</div>";
+                            };
+                        ?>
+                        <?php
+                            if($row[8] == 'S'){
+                                echo "<div class='item-class'>";
+                                echo "<div class='remedio'>Remédio 💊</div>";
+                                echo "</div>";
+                            };
+                        ?>
+                    </td>
                     <td class="table-cell"><?php echo $row[7];?></td>
                     <td class="table-cell"><?php echo $row[8];?></td>
                 </tr>

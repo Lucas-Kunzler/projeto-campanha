@@ -156,7 +156,7 @@ body{
 
 .table-itens{
     width: 70%;
-    height: 80%;
+    height: 47rem;
     
     margin: 70px auto;
     vertical-align: middle;
@@ -173,6 +173,34 @@ body{
     border-collapse: collapse;
     position: sticky;
     top: 0;
+}
+
+
+.table .roupa {
+    background-color: #FAA8A2;
+    color: #7A0A02;
+    width: 7rem;
+    padding: 6px 2px;
+    border-radius: .25rem;
+    text-align: center;
+}
+
+.table .comida {
+    background-color: #FFE278;
+    color: #806916;
+    width: 7rem;
+    padding: 6px 2px;
+    border-radius: .25rem;
+    text-align: center;
+}
+
+.table .remedio {
+    background-color: #6DB4FF;
+    color: #255D73;
+    width: 7rem;
+    padding: 6px 2px;
+    border-radius: .25rem;
+    text-align: center;
 }
 
 .table th, td{

@@ -358,6 +358,81 @@ button:hover {
   border-left: var(--primary-color) 5px solid;
   margin: 10px 0;
   padding-left: 20px;
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.muni .infos .info.itens {
+  line-height: 28px;
+
+}
+
+.info .roupa {
+  background-color: #FAA8A2;
+  color: #7A0A02;
+  padding: 3px 6px;
+  border-radius: .25rem;
+  text-align: center;
+  white-space: nowrap;
+  display: inline;
+  margin: 1px;
+}
+
+.info .comida {
+  background-color: #FFE278;
+  color: #806916;
+  padding: 3px 6px;
+  border-radius: .25rem;
+  text-align: center;
+  white-space: nowrap;
+  display: inline;
+  margin: 1px;
+}
+
+.info .remedio {
+  background-color: #6DB4FF;
+  color: #255D73;
+  padding: 3px 6px;
+  border-radius: .25rem;
+  text-align: center;
+  white-space: nowrap;
+  display: inline;
+  margin: 1px;
+}
+
+.info .nolocal {
+  background-color: #70F178;
+  color: #357139;
+  padding: 3px 6px;
+  border-radius: .25rem;
+  text-align: center;
+  white-space: nowrap;
+  display: inline;
+  margin: 1px;
+}
+
+.info .agenhorario {
+  background-color: #A080D7;
+  color: #532680  ;
+  padding: 3px 6px;
+  border-radius: .25rem;
+  text-align: center;
+  white-space: nowrap;
+  display: inline;
+  margin: 1px;
+}
+
+.info .delivery {
+  background-color: #FF8138;
+  color: #733A19;
+  padding: 3px 6px;
+  border-radius: .25rem;
+  text-align: center;
+  white-space: nowrap;
+  display: inline;
+  margin: 1px;
 }
 
 .subtitle{
@@ -387,6 +462,7 @@ button:hover {
   position: fixed;
   bottom: 0;
   right: 0;
+  z-index: 3;
 
   margin: 15px;
 
@@ -435,6 +511,29 @@ button:hover {
 
 .uil-building {
   margin: auto;
+}
+
+.uil-times {
+  margin: 0 auto;
+}
+
+.fechar {
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: .7rem;
+  right: .7rem;
+  font-size: 30px;
+  background: var(--primary-color-dark);
+  
+  border-radius: .5rem;
+  color: var(--body-color);
+}
+
+.fechar:hover {
+  cursor: pointer;
 }
 
 .card {
@@ -558,4 +657,44 @@ button:hover {
 
 a {
   text-decoration:none;
+}
+
+.preview-geral {
+  z-index: 4;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-geral .preview {
+  display: none;
+  border-radius: .5rem;
+}
+
+.preview-geral .preview.active {
+  border-radius: .5rem;
+  display: inline-block;
+  width: 700px;
+  height: 900px;
+  background: var(--body-color);
+}
+
+.preview-image {
+  width: 100%;
+  height: 25rem;
+  
+  background: var(--red-button);
+  object-fit: cover;
+  border-radius: .5rem;
+
+  display: flex;
+  position: relative;
 }

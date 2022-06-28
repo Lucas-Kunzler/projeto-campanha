@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/incluir_item.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
-<body>
+<body onload="SexoChange()">
     <div class="navbar">
         <div class="logo">
             <a href="../html/"><i class="uil uil-adjust-circle"></i></a>
@@ -84,15 +84,15 @@
                             <legend>Categoria</legend>
                             <div class="fieldset-divs">
                                 <div class="fieldset-div">
-                                    <input type="checkbox" name="categoria" id="categoria1" class="roupa" value="Roupas" onClick="ckChange(this)">
+                                    <input type="radio" name="categoria" id="categoria1" class="roupa" value="Roupas" onClick="SexoChange(this)">
                                     <label>Roupa 👚</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="checkbox" name="categoria" id="categoria2" value="Comida" onClick="ckChange(this)">
+                                    <input type="radio" name="categoria" id="categoria2" value="Comida" onClick="SexoChange(this)">
                                     <label>Comida 🍕</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="checkbox" name="categoria" id="categoria3" value="Remédios" onClick="ckChange(this)">
+                                    <input type="radio" name="categoria" id="categoria3" value="Remédios" onClick="SexoChange(this)">
                                     <label>Remédio 💊</label>
                                 </div>
                             </div>
@@ -103,15 +103,15 @@
                             <legend>Sexo</legend>
                             <div class="fieldset-divs">
                                 <div class="fieldset-div">
-                                    <input type="checkbox" class="sexo" id="sexo1">
+                                    <input type="radio" name="sexo" id="sexo1" class="sexo" value="Masculino">
                                     <label class="label">Masculino</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="checkbox" class="sexo" id="sexo2">
+                                    <input type="radio" name="sexo" id="sexo2" class="sexo" value="Feminino">
                                     <label class="label">Feminino</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="checkbox" class="sexo" id="sexo3">
+                                    <input type="radio" name="sexo" id="sexo3" class="sexo" value="Unisex">
                                     <label class="label">Unisex</label>
                                 </div>
                             </div>
@@ -131,6 +131,5 @@
             </form>
         </div>
     </div>
-    <script src="../js/incluir_item.js"></script>
 </body>
 </html>

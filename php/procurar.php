@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    
+    <script src="js/script.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
     <title>Doações</title>
 </head>
@@ -175,32 +175,50 @@
                                 <div class="infos-infos">
                                     <label class="subtitle">Informações de Doação</label>
             
-                                    <div class="info">
-                                        Itens: <?php 
+                                    <div class="info itens">
+                                        Itens:&nbsp;<?php 
                                         $itens2 = "";
                                         if($row[12]=="S"){
-                                            $itens2 = "Roupas";
+                                            // $itens2 = "Roupas";
+                                            echo "<div class='item-class'>";
+                                            echo "<div class='roupa'>Roupa 👚</div>";
+                                            echo "</div>";
                                         }
                                         if($row[13]=="S"){
-                                            $itens2 = $itens2."Comidas";
+                                            // $itens2 = $itens2."Comidas";
+                                            echo "<div class='item-class'>";
+                                            echo "<div class='comida'>Comida 🍕</div>";
+                                            echo "</div>";
                                         }
                                         if($row[14]=="S"){
-                                            $itens2 = $itens2."Remédios";
+                                            // $itens2 = $itens2."Remédios";
+                                            echo "<div class='item-class'>";
+                                            echo "<div class='remedio'>Remédio 💊</div>";
+                                            echo "</div>";
                                         }
                                         echo $itens2;
                                         ?>
                                     </div>
-                                    <div class="info">
+                                    <div class="info itens">
                                         Meios de doação: <?php 
                                         $meioss="";
                                         if($row[15]=="S"){
-                                            $meioss = "No local";
+                                            // $meioss = "No local";
+                                            echo "<div class='item-class'>";
+                                            echo "<div class='nolocal'>No Local 🚩</div>";
+                                            echo "</div>";
                                         }
                                         if($row[16]=="S"){
-                                            $meioss = $meioss."Agendar horário";
+                                            // $meioss = $meioss."Agendar horário";
+                                            echo "<div class='item-class'>";
+                                            echo "<div class='agenhorario'>Agen. Horário ⏰</div>";
+                                            echo "</div>";
                                         }
                                         if($row[17]=="S"){
-                                            $meioss = $meioss."Buscamos pra você";
+                                            // $meioss = $meioss."Buscamos pra você";
+                                            echo "<div class='item-class'>";
+                                            echo "<div class='delivery'>Delivery 🚚</div>";
+                                            echo "</div>";
                                         }
                                         echo $meioss;
                                         ?>
@@ -258,6 +276,21 @@
         }
     echo "</div>"
     ?>
+    <div class="preview-geral">
+        <div class="preview active">
+            <div>
+                <div class="preview-image" onclick="Preview">
+                    <div class="fechar">
+                        <i class="uil uil-times"></i>
+                    </div>
+                    <img src="<?php echo $row[1]?>" alt="">
+                </div>
+            </div>
+            <div class="preview-content">
+
+            </div>
+        </div>
+    </div>
     <script src="../js/procurar.js"></script>
 </body>
 </html>
