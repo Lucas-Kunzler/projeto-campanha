@@ -1,6 +1,5 @@
 <?php
 include_once "conexao.php";
-    
         $localhost = "localhost";
 		$user = "root";
 		$password = "12345";
@@ -24,7 +23,19 @@ include_once "conexao.php";
         $flbuscamospravc = empty($_POST['buscamosvc'])?'N':'S';
 		$conn = mysqli_connect($localhost, $user, $password, $banco);
         $sql = "";
-        if (empty($_FILES['arquivo']['size']) != true){             
+        if (empty($_FILES['arquivo']['size']) != true){        
+            $sql1 = "select foto from centros where idCentros = $id_centro";
+            $result1 = mysqli_query($conn, $sql1);
+            $row1 = mysqli_fetch_array($result1, MYSQLI_NUM);
+            if (!unlink($row1[0]))
+            {
+                echo ("Erro ao deletar $arquivo");
+            }
+            else
+            {
+                echo ("Deletado $arquivo com sucesso!");
+            }
+            
             $arquivo = $_FILES["arquivo"];
             $nome_temporario=$_FILES["arquivo"]["tmp_name"];
             $nome_real=$_FILES["arquivo"]["name"];
@@ -43,6 +54,7 @@ include_once "conexao.php";
         
     }
         else{
+            
             $sql = "UPDATE `campanha_agasalho`.`centros` SET `nome` = '$nome', `estado` = '$estado', `cidade` = '$cidade', `bairro` = '$bairro', `rua` = '$rua', `numero` = '$numero', `observacao` = '$observacao', `gerente` = '$gerente', `horario_abertura` = '$horario_abertura', `horario_fechamento` = '$horario_fechamento', `roupa` = '$flroupas', `comida` = '$flcomidas', `remedio` = '$flremedios', `nolocal` = '$flnolocal', `agenhorario` = '$flagenhorario', `buscamosvc` = '$flbuscamospravc' WHERE (`idCentros` = '$id_centro')";
         }
         $result = mysqli_query($conn, $sql);
