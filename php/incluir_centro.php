@@ -9,32 +9,17 @@
     <link rel="stylesheet" href="../css/incluir_centro.css">
 </head>
 <body>
-<div class="navbar">
-        <div class="logo">
-            <a href="../html/index.html"><i class="uil uil-adjust-circle"></i></a>
-        </div>
-        <div class="links">
-            <div class="link">
-                <a href="../html/index.html" class="a-link"><span class="text-link">Home</span></a>
-            </div>
-            <div class="link">
-                <a href="about.html" class="a-link"><span class="text-link">Sobre nós</span></a>
-            </div>
-            <div class="link dropdown">
-                <a href="" class="a-link"><span class="text-link">Procurar</span></a>
-                <div class="dropdown dropdown-content">
-                    <a href="../php/procurar.php" class="a-link"><span class="text-link">Centros</span></a>
-                    <a href="../php/p_prod.php" class="a-link"><span class="text-link">Itens</span></a>
-                </div>
-            </div>
-            <div class="link">
-                <a href="../html/login.php" class="a-link"><span class="text-link">Entrar</span></a>
-            </div>
-            <div class="link">
-                <a href="../html/login.php" class="a-link"><span class="text-link-alt">Registrar</span></a>
-            </div>
-        </div>
-    </div>
+    <?php
+    session_start();
+    if(isset($_SESSION['idC'])){
+        include_once '../html/header1.php';
+        $idC = $_SESSION['idC'];
+    }
+    else{
+        include_once '../html/header.html';
+        $idC=null;
+    }
+    ?>
     <div class="centro-popup">
         <div class="popup">
             <form action="inserir.php" method="post" enctype="multipart/form-data">

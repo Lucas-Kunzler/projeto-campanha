@@ -53,13 +53,6 @@ session_start();
                             <i class="uil uil-eye-slash showHidePw"></i>
                         </div>
     
-                        <div class="checkbox-text">
-                            <div class="checkbox-content">
-                                <input type="checkbox" class="input-login checkbox" id="logCheck">
-                                <label for="logCheck" class="text">Salvar Login</label>
-                            </div>
-                        </div>
-    
                         <div class="input-field button">
                             <input type="submit" class="input-login submit" value="Logar Agora" required>
                         </div>

@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
 }
-   
+
 .navbar {
     width: 100%;
     margin-top: 10px;
@@ -18,53 +18,53 @@
     top: 0;
     justify-content: space-between;
     /* box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.2); */
-  }
-  
-  .logo {
+}
+
+.logo {
     font-size: 50px;
     color: var(--primary-color);
     margin: auto 20px;
     width: 50px;
-  }
-  
-  .logo a {
+}
+
+.logo a {
     text-decoration: none;
     color: var(--primary-color);
-  }
-  
-  .links {
+}
+
+.links {
     display: flex;
     margin: auto 0;
     margin-right: 30px;
     width: 100%;
     height: auto;
-  
+
     align-content: flex-end;
     justify-content: right;
-  }
-  
-  .link {
+}
+
+.link {
     font-weight: 600;
     font-size: 18px;
     margin: 0 20px;
     height: auto;
-  
+
     transition: var(--tran-03);
-  }
-  
-  .text-link {
+}
+
+.text-link {
     font-weight: 600;
     position: relative;
     cursor: pointer;
     transition: var(--tran-02);
-  }
-  
-  .text-link:hover {
+}
+
+.text-link:hover {
     color: var(--primary-color-hover);
     transition: var(--tran-02);
-  }
-  
-  .text-link::before {
+}
+
+.text-link::before {
     content:'';
     position: absolute;
     left: 0;
@@ -73,66 +73,66 @@
     width: 0;
     background: #000;
     border-radius: 25px;
-    
+
     visibility: hidden;
     transition: var(--tran-02);
-  }
-  
-  .text-link:hover:before {
+}
+
+.text-link:hover:before {
     visibility: visible;
     width: 100%;
     background: var(--primary-color-hover);
-  }
-  
-  .text-link-alt {
+}
+
+.text-link-alt {
     background: #000;
     border-radius: 6px;
     color: #fff;
     padding: 7px 10px;
     margin: 4px;
     cursor: pointer;
-  
+
     transition: var(--tran-02);
-  }
-  
-  .text-link-alt:hover {
+}
+
+.text-link-alt:hover {
     padding: 7px 14px;
     margin: 0px;
-  
+
     transition: var(--tran-02);
-  
+
     box-shadow: 0px 0px 14px 3px rgba(0,0,0,0.3);
-  }
-  
-  .a-link {
+}
+
+.a-link {
     text-decoration: none;
     color: #000;
     height: auto;
     padding: 7px 0;
-  }
-  
-  .dropdown {
+}
+
+.dropdown {
     position: relative;
     display: inline-block;
-  }
-  
-  .dropdown-content {
+}
+
+.dropdown-content {
     display: none;
     position: absolute;
     z-index: 1;
     height: 100%;
-  }
-  
-  .dropdown:hover .dropdown-content{
+}
+
+.dropdown:hover .dropdown-content{
     display: block;
     padding: 7px 0;
     position: absolute;
-  }
-  
-  .dropdown-content a {
+}
+
+.dropdown-content a {
     text-decoration: none;
     display: block;
-  }
+}
 
 .container{
     position: relative;
@@ -157,6 +157,7 @@
     align-items: center;
     width: 200%;
     height: auto;
+    transition: height 0.2s ease;
 }
 
 .container .form .title{
@@ -195,7 +196,7 @@
     transition: all 0.2s ease;
 }
 
-.input-field input:is(:focus, :valid){
+.input-field input:is(:focus,){
     border-bottom-color: var(--primary-color);
 }
 
@@ -207,8 +208,8 @@
     font-size: 23px;
 }
 
-.input-field input:is(:focus, :valid) ~ i{
-    color: #457B9D;
+.input-field input:is(:focus,) ~ i{
+    color: var(--primary-color);
 }
 
 .input-field i.icon{
@@ -221,29 +222,20 @@
     padding: 10px;
 }
 
-.form .checkbox-text {
+/* .form .checkbox-text {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 20px;
-}
-
-.checkbox-text .checkbox-content {
-    display: flex;
-    align-items: center;
-}
-
-.checkbox-content input {
-    margin: 0 8px -2px 4px;
-    accent-color: var(--primary-color);
-}
+} */
 
 .form a{
     color: var(--primary-color);
     text-decoration: none;
 }
 
-.form .input-login{
+
+.form .input-signup{
     font-size: 14px;
 }
 
@@ -254,6 +246,7 @@
 .form .button{
     margin-top: 35px;
 }
+
 
 .form .button input{
     border: none;
@@ -271,6 +264,7 @@
     text-align: center;
     font-size: 14px;
 }
+
 
 .notification{
     margin-top: 15px;

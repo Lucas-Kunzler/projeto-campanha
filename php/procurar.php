@@ -17,7 +17,7 @@
     <?php
     session_start();
     if(isset($_SESSION['idC'])){
-        include_once '../html/header1.html';
+        include_once '../html/header1.php';
         $idC = $_SESSION['idC'];
     ?>
     <a href="incluir_centro.php?idcolab=<?php echo $idC?>">
@@ -207,7 +207,7 @@
                                         if($row[17]=="S"){
                                             // $meioss = $meioss."Buscamos pra você";
                                             echo "<div class='item-class'>";
-                                            echo "<div class='delivery'>Delivery 🚚</div>";
+                                            echo "<div class='delivery'>Buscamos 🚚</div>";
                                             echo "</div>";
                                         }
                                         echo $meioss;
@@ -216,11 +216,13 @@
                                     <div class="info">
                                         Gerente: <?php 
                                         
-                                        $sql1 = "SELECT nome,idColaboradores from colaboradores where idColaboradores = $row[9]";
+                                        $sql1 = "SELECT nome,telefone,idColaboradores from colaboradores where idColaboradores = $row[9]";
                                         $result1 = mysqli_query($conn, $sql1);
                                         $row1 = mysqli_fetch_array($result1, MYSQLI_NUM);
         
                                         echo $row1[0];?>
+                                        -
+                                        <?php echo $row1[1];?>
                                     </div>
                                     <div class="info">
                                         <?php echo substr($row[10], 0, -3);?>

@@ -1,20 +1,36 @@
+
+function mask(o, f) {
+    setTimeout(function() {
+      var v = mphone(o.value);
+      if (v != o.value) {
+        o.value = v;
+      }
+    }, 1);
+  }
+  
+  function mphone(v) {
+    var r = v.replace(/\D/g, "");
+    r = r.replace(/^0/, "");
+    if (r.length > 10) {
+      r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+    } else if (r.length > 5) {
+      r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+    } else if (r.length > 2) {
+      r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+    } else {
+      r = r.replace(/^(\d*)/, "($1");
+    }
+    return r;
+  }
+
 const container = document.querySelector(".container"),
     pwShowHide = document.querySelectorAll(".showHidePw"),
-    pwFields = document.querySelectorAll(".password"),
-    signUp = document.querySelector(".signup-link"),
-    login = document.querySelector(".login-link");
-
-const input_logins = document.querySelectorAll(".input-login"),
-    input_signups = document.querySelectorAll(".input-signup"),
-    email = document.querySelectorAll(".email"),
-    text = document.querySelectorAll(".text"),
-    checkbox = document.querySelectorAll(".checkbox"),
-    submit = document.querySelectorAll(".submit");
+    pwFields = document.querySelectorAll(".password");
 
     pwShowHide.forEach(eyeIcon =>{
         eyeIcon.addEventListener("click", ()=>{
             pwFields.forEach(pwField =>{
-                if(pwField.type ==="password"){
+                if(pwField.type === "password"){
                     pwField.type = "text";
 
                     pwShowHide.forEach(icon =>{
@@ -30,25 +46,3 @@ const input_logins = document.querySelectorAll(".input-login"),
             })
         })
     })
-
-    signUp.addEventListener("click", ()=>{
-        container.classList.add("active");
-
-        // input_logins.forEach(input_login =>{
-        //     input_login.type = "hidden";
-        // })
-
-        // input_signups.email.type = "email";
-        // input_signups.text.type = "text";
-        // input_signups.pwFields.type = "password";
-        // input_signups.chechbox.type = "checkbox";
-        // input_signups.submit.type = "submit";
-    });
-    
-    login.addEventListener("click", ()=>{
-        container.classList.remove("active");
-
-        // input_signups.forEach(input_login =>{
-        //     input_login.type = "hidden";
-        // })
-    });

@@ -1,6 +1,5 @@
 @import 'root.css';
 
-
 .navbar {
   width: 100%;
   margin-top: 10px;
@@ -52,7 +51,7 @@
 }
 
 .text-link:hover {
-  color: var(--primary-color-hover);
+  color: var(--secondary-color);
   transition: var(--tran-02);
 }
 
@@ -73,7 +72,7 @@
 .text-link:hover:before {
   visibility: visible;
   width: 100%;
-  background: var(--primary-color-hover);
+  background: var(--secondary-color);
 }
 
 .text-link-alt {

@@ -12,7 +12,17 @@
     <title>Home</title>
 </head>
 <body>
-    <?php include_once 'header.html';?>
+<?php
+    session_start();
+    if(isset($_SESSION['idC'])){
+        include_once '../html/header1.php';
+        $idC = $_SESSION['idC'];
+    }
+    else{
+        include_once '../html/header.html';
+        $idC=null;
+    }
+    ?>
     
     <div class="content">
         <div class="icons">

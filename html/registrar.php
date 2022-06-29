@@ -9,52 +9,28 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
     <!-- Iconscout -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/registrar.css">
 </head>
 <body>
-
-
-
     <!-- NAVBAR -->
-    <div class="navbar">
-        <div class="logo">
-            <a href="../html/"><i class="uil uil-adjust-circle"></i></a>
-        </div>
-        <div class="links">
-            <div class="link">
-                <a href="about.html" class="a-link"><span class="text-link">Sobre nós</span></a>
-            </div>
-            <div class="link dropdown">
-                <a href="" class="a-link"><span class="text-link">Procurar</span></a>
-                <div class="dropdown dropdown-content">
-                    <a href="../php/procurar.php" class="a-link"><span class="text-link">Centros</span></a>
-                    <a href="../php/p_prod.php" class="a-link"><span class="text-link">Itens</span></a>
-                </div>
-            </div>
-            <div class="link">
-                <a href="../html/login.php" class="a-link"><span class="text-link">Entrar</span></a>
-            </div>
-            <div class="link">
-                <a href="../html/login.php" class="a-link"><span class="text-link-alt">Registrar</span></a>
-            </div>
-        </div>
-    </div>
+    <?php include_once '../html/header.html';?>
 
 
     <div class="body-container">
         <div class="container">
             <div class="forms">  
                 <!-- Form Registro -->
-                <div class="form login">
-                    <span class="title">Registrar</span>
+                <div class="form signup">
+                    <span class="title">Registrar-se</span>
     
                     <form action="../php/registrar.php" method="POST" >
                         <div class="input-field">
-                            <input type="text" class="input-signup text" name="nome" placeholder="Insira seu nome" required>
+                            <input type="text" class="input-signup text" name="nome" placeholder="Insira seu nome" required autofocus>
                             <i class="uil uil-user icon"></i>
                         </div>
                         <div class="input-field">
@@ -62,7 +38,8 @@ session_start();
                             <i class="uil uil-envelope icon"></i>
                         </div>
                         <div class="input-field">
-                            <input type="tel" name="telefone" class="input-signup email" placeholder="Insira seu número" required>
+                            <!-- <input type="text" name="telefone" class="input-signup phone" onkeypress="mascaraDeTelefone(this.value)" pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}" placeholder="(99) 99999-9999" required> -->
+                            <input type="text" name="telefone" id="telefone" class="input-signup phone" placeholder="(99) 99999-9999" onkeypress="mask(this,mphone)" />
                             <i class="uil uil-mobile-android icon"></i>
                         </div>
                         <div class="input-field">
@@ -75,14 +52,6 @@ session_start();
                             <i class="uil uil-lock icon"></i>
                             <i class="uil uil-eye-slash showHidePw"></i>
                         </div>
-                        <div class="checkbox-text">
-                            <div class="checkbox-content">
-                                <input type="checkbox" class="input-signup checkbox" id="logCheck">
-                                <label for="logCheck" class="text">Salvar Login</label>
-                            </div>
-    
-                            <a href="#" class="text input-signup">Esqueceu a senha?</a>
-                        </div>
     
                         <div class="input-field button">
                             <input type="submit" class="input-signup submit" value="Registrar-se" required>
@@ -90,8 +59,8 @@ session_start();
                     </form>
     
                     <div class="login-signup">
-                        <span class="text">Não é um colaborador?
-                            <a href="#" class="text login-link">Registra-se agora</a>
+                        <span class="text">Já tem uma conta?
+                            <a href="../html/login.php" class="text login-link">Fazer Login</a>
                         </span>
                     </div>
                 </div>
