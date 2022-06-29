@@ -17,7 +17,7 @@
     <?php
     session_start();
     if(isset($_SESSION['idC'])){
-        include_once '../html/header1.html';
+        include_once '../html/header1.php';
         $idC = $_SESSION['idC'];
     ?>
     <a href="incluir_centro.php?idcolab=<?php echo $idC?>">

@@ -15,10 +15,11 @@
 <body>
     
     <?php
-    include_once '../html/header.html';
     session_start();
     
     if(isset($_SESSION['idC'])){
+        include_once '../html/header1.php';
+        $idC = $_SESSION['idC'];
     ?>
         <a href="incluir_item.php">
             <div class='button-sqr button-add'>
@@ -32,6 +33,11 @@
         </a>
 <?php
         }
+        else{
+            include_once '../html/header.html';
+            $idC=null;
+        }
+
         
 ?>
     <form action="p_prod.php"method="post">
@@ -76,40 +82,45 @@
         
         echo "</div>";
         echo "<div class='consulta'>";
-
+        $sql = "SELECT * FROM produto where";
+        $categoria = "";
+        $centro = "";
+        $nome = "";
+        
         if(isset($_POST['nome']) || isset($_POST['categoria'])|| isset($_POST['centro'])){
-            $nome = $_POST['nome'];
             if(isset($_POST['categoria'])){
                 $categoria = $_POST['categoria'];  
+                $sql = $sql."($categoria like 'S')";
             }
-            else{
-                $categoria="";
-                        }
-            $centro = $_POST['centro'];  
-            $nome = $nome."%";
+            if(isset($_POST['centro'])){
+                $centro = $_POST['centro'];
+                if(isset($_POST['categoria'])){
+                    $sql = $sql."and";
+                }
+               
+                $sql = $sql."(fkidcentro = $centro)"; 
+                
+                
+            }
+            if(isset($_POST['nome'])){
+                $nome = $_POST['nome']."%";
+                if(isset($_POST['categoria']) || isset($_POST['centro'])){
+                    $sql = $sql."and";
+                }
+                $sql = $sql."(nome like '$nome')"; 
+            }
             // $categoria = $categoria."%";  
             // $centro = $centro."%";  
+            $sql = $sql."order by fkidcentro";
             $sql1 = "select idCentros, nome from centros group by idCentros";
             $result1 = mysqli_query($conn, $sql1);
             $row1 = mysqli_fetch_array($result1, MYSQLI_NUM);
-            if(($nome!="") && ($categoria!="")&&($centro!="")){
-                $sql = "SELECT * FROM produto where ($categoria like 'S') and (nome like '$nome') and (fkidcentro = $centro) order by fkidcentro";
-            }
-            else if(($nome!="") && ($categoria!="")){
-                $sql = "SELECT * FROM produto where ($categoria like 'S') and (nome like '$nome') order by nome";
-            }
-            
-            else if(($categoria!="")&&($centro!="")){
-                $sql = "SELECT * FROM produto where ($categoria like 'S') and (fkidcentro = $centro) order by fkidcentro";
-            }
         }
-
-        
         else{
             $sql = "SELECT * FROM produto order by fkidcentro";
 
         }
-    
+
         $result = mysqli_query($conn, $sql);
         if (!$conn)
         {
@@ -139,7 +150,7 @@
         // verifica os registros retornados
         if($result){
         while ($row = mysqli_fetch_array($result, MYSQLI_NUM)){
-                $sql1 = "select * from centros where idCentros = $row[9] order by idCentros";
+                $sql1 = "select * from centros where idCentros = $row[9] union select * from centros where idCentros != $row[9]";
                 $result1 = mysqli_query($conn, $sql1);
                 $row1 = mysqli_fetch_array($result1, MYSQLI_NUM);
                 ?>
@@ -148,8 +159,13 @@
                         <div class="-table-item">
                             <?php echo $row[1];?>
                         </div>
+                        <?php
+                        
+                        if(($row1[9]==$idC)){
+                            
+                        ?>
                         <div class="buttons">
-                            <a href="alterar_item.php?codigo=<?php echo $row[0]?>">
+                            <a href="alterar_item.php?codigo=<?php echo $row[0]?>&idcentro=<?php echo "$row1[0]";?>">
                                 <div class="button-edit button button-alt">
                                     <i class="uil uil-pen"></i>
                                 </div>
@@ -160,6 +176,9 @@
                                 </div>
                             </a>
                         </div>
+                     <?php   
+                    }
+                    ?>
                     </td>
                     <td class="table-cell"><?php echo $row1[2];?></td>
                     <td class="table-cell"><?php echo $row[10];?></td>

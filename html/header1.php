@@ -33,10 +33,19 @@
                     </div>
                 </div>
                 <div class="link">
+                    <a href="../php/logout.php" class="a-link"><span class="text-link"><?php 
+                        $nome = $_SESSION['nome'];
+                        echo $nome?></span></a>
+                </div>
+            </div>
+                <div class="link">
+                    <a href="../php/editar_perfil.php" class="a-link"><span class="text-link"><?php 
+                        $nome = $_SESSION['nome'];
+                        echo "Editar"?></span></a>
+                </div>
+                <div class="link">
                     <a href="../php/logout.php" class="a-link"><span class="text-link">Sair</span></a>
                 </div>
-               
-            </div>
         </div>
     </div>
 </body>

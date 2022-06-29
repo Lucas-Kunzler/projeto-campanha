@@ -38,7 +38,7 @@
     <?php
     include_once "conexao.php";
     $codigo = $_GET['codigo'];
-    $sql = "SELECT * FROM centros where idCentros = $codigo";
+    $sql = "SELECT * FROM produto where idProduto = $codigo";
     $result = mysqli_query($conn, $sql);
     if (!$conn)
     {
@@ -50,12 +50,12 @@
     ?>
     <div class="centro-popup">
         <div class="popup">
-            <form action="inserir_item.php" method="post" enctype="multipart/form-data">
-                <h1>Adicionar Item</h1>
+            <form action="alterar_i.php" method="post" enctype="multipart/form-data">
+                <h1>Alterar Item</h1>
                 <hr>
                 <div class="form-divs">
                     <div class="form-div nome">
-                        <input type="text" class="input-field" name="item" placeholder=" " value="<?php echo $row[0]?>"required>
+                        <input type="text" class="input-field" name="item" placeholder=" " value="<?php echo $row[1]?>"required>
                         <label class="form-label">Item</label>
                     </div>
                     <div class="form-div">
@@ -63,29 +63,37 @@
                     <?php
                     include_once "conexao.php";
                     session_start();
-                                $codigo = $_SESSION['idC'];
-                                $sql1 = "select idCentros, nome from centros where gerente = $codigo";
+                                $idC = $_SESSION['idC'];
+                                $idcentros=$_GET['idcentro'];
+                                $sql1 = "select idCentros, nome from centros where gerente = $idC and idCentros!= $idcentros";
                                 $result2 = mysqli_query($conn, $sql1);
-
-                                echo "<option disabled selected> Selecione o Centro <i class='uil uil-sort'></i></option>";
-                                while ($row2 = mysqli_fetch_array($result2, MYSQLI_NUM)){
+                                $row2 = mysqli_fetch_array($result2, MYSQLI_NUM);
+                                
+                                $sql4 = "select idCentros, nome from centros where idCentros = $idcentros";
+                                $result4 = mysqli_query($conn, $sql4);
+                                $row4 = mysqli_fetch_array($result4, MYSQLI_NUM);
+                                
+                                
+                                ?>
+                                <option selected value="<?php echo $row4[0]?>"><?php echo $row4[1]?><i class="uil uil-sort"></i></option>
+                                <?php while ($row2 = mysqli_fetch_array($result2, MYSQLI_NUM)){
                             ?>
-                            <option value="<?php echo "$row2[0]";?>"><?php echo "$row2[1]";?></option>
+                            <option value='<?php echo "$row2[0]";?>'><?php echo "$row2[1]";?></option>
                             <?php  
                             }
-                    ?>
+                            ?>
                     </select>
                 </div>
                     <div class="form-div">
-                        <input type="text" class="input-field" name="setor" placeholder=" " required>
+                        <input type="text" class="input-field" name="setor" placeholder=" " value="<?php echo $row[10]?>"required>
                         <label class="form-label">Setor/Caixa</label>
                     </div>
                     <div class="form-div">
-                        <input type="number" class="input-field" name="quant" placeholder=" " required>
+                        <input type="number" class="input-field" name="quant" placeholder=" " value="<?php echo $row[2]?>" required>
                         <label class="form-label">Quantidade</label>
                     </div>
                     <div class="form-div">
-                        <input type="text" class="input-field" name="tam" placeholder=" " required>
+                        <input type="text" class="input-field" name="tam" placeholder=" " value="<?php echo $row[3]?>"required>
                         <label class="form-label">Tamanho</label>
                     </div>
                     <div class="checkbox">
@@ -93,15 +101,15 @@
                             <legend>Categoria</legend>
                             <div class="fieldset-divs">
                                 <div class="fieldset-div">
-                                    <input type="radio" name="categoria" id="categoria1" class="roupa" value="roupa" onClick="SexoChange(this)">
+                                    <input type="radio" name="roupas" <?=($row[6]=='S'?'checked':'')?> id="categoria1" class="roupa" value="S" onClick="SexoChange(this)">
                                     <label>Roupa 👚</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="radio" name="categoria" id="categoria2" value="comida" onClick="SexoChange(this)">
+                                    <input type="radio" name="comidas" <?=($row[7]=='S'?'checked':'')?> id="categoria2" value="S" onClick="SexoChange(this)">
                                     <label>Comida 🍕</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="radio" name="categoria" id="categoria3" value="remedio" onClick="SexoChange(this)">
+                                    <input type="radio" name="remedios" <?=($row[8]=='S'?'checked':'')?> id="categoria3" value="S" onClick="SexoChange(this)">
                                     <label>Remédio 💊</label>
                                 </div>
                             </div>
@@ -112,33 +120,36 @@
                             <legend>Sexo</legend>
                             <div class="fieldset-divs">
                                 <div class="fieldset-div">
-                                    <input type="radio" name="sexo" id="sexo1" class="sexo" value="Masculino">
+                                    <input type="radio" name="sexo" <?=($row[4]=='Masculino'?'checked':'')?> class="sexo" value="Masculino" onClick="SexoChange(this)">
                                     <label class="label">Masculino</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="radio" name="sexo" id="sexo2" class="sexo" value="Feminino">
+                                    <input type="radio" name="sexo" <?=($row[4]=='Feminino'?'checked':'')?>  class="sexo" value="Feminino" onClick="SexoChange(this)">
                                     <label class="label">Feminino</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="radio" name="sexo" id="sexo3" class="sexo" value="Unisex">
+                                    <input type="radio" name="sexo" <?=($row[4]=='Unisex'?'checked':'')?>   class="sexo" value="Unisex"onClick="SexoChange(this)">
                                     <label class="label">Unisex</label>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-div desc">
-                        <textarea name="descricao" class="input-field" placeholder=" "></textarea>
+                        <textarea name="descricao" class="input-field" placeholder=" "><?php echo $row[5]?></textarea>
                         <label class="form-label">Descrição</label>
                     </div>
-                    </div>
-                        <div class="buttons">
-                            <input type="submit" class="button button2" value="Salvar" required>
-                            <input type="reset" class="button button-alt" value="Cancelar" required>
-                        </div>
-                    </div>
                 </div>
-            </form>
+                <div>
+                    <input type="hidden" name="id_item" value="<?php echo $row[0];?>">
+                </div>
+                <div class="buttons">
+                    <input type="submit" class="button button2" value="Salvar" required>
+                    <input type="reset" class="button button-alt" value="Cancelar" required>
+                </div>
+            </div>
         </div>
-    </div>
+    </form>
+</div>
+</div>
 </body>
 </html>

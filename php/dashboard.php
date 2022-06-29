@@ -26,5 +26,6 @@ if($result){
     
 
 $_SESSION['idC'] = $idC;
+$_SESSION['nome'] = $nome;
 header("location: procurar.php");
 ?>
