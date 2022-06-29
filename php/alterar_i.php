@@ -1,6 +1,5 @@
 <?php
 include_once "conexao.php";
-
         $localhost = "localhost";
 		$user = "root";
 		$password = "12345";
@@ -10,7 +9,6 @@ include_once "conexao.php";
         $setor = $_POST['setor'];
         $quant = $_POST['quant'];
         $tam = $_POST['tam'];
-
         $sexo = $_POST['sexo'];
         $descricao = $_POST['descricao'];
         $id_item = $_POST['id_item'];

@@ -1,6 +1,5 @@
 <?php             
     include_once "conexao.php";
-
 	$codigo = $_GET['codigo'];
 
 	$sql = "DELETE FROM produto ".

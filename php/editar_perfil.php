@@ -66,7 +66,6 @@ session_start();
                         <label class="form-label">Senha atual:</label>
                     </div>
                 </div>
-
                     </div>
                         <div class="buttons">
                             <input type="submit" class="button button2" value="Salvar" required>
