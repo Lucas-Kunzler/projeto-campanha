@@ -50,7 +50,7 @@ include_once "conexao.php";
     ?>
     <div class="centro-popup">
         <div class="popup">
-            <form action="inserir.php" method="post" enctype="multipart/form-data">
+            <form action="alterar.php" method="post" enctype="multipart/form-data">
                 <h1>alterar centro</h1>
                 <hr>
                 <div class="form-divs">
@@ -60,7 +60,7 @@ include_once "conexao.php";
                     </div>
                     <div class="form-div">
                         <select name="estado" id="estado" class="select input-field">
-                            <option selected value="<?php echo $estado?>"><?php echo $row[3]?><i class="uil uil-sort"></i></option>
+                            <option selected value="<?php echo $row[3]?>"><?php echo $row[3]?><i class="uil uil-sort"></i></option>
                             <option value="AC">AC</option>
                             <option value="AL">AL</option>
                             <option value="AP">AP</option>
@@ -121,27 +121,8 @@ include_once "conexao.php";
                     </div> -->
                     
                     <div class="form-div">
-                        <select name="gerente" id="gerente" class="select input-field">
-                            <?php
-
-                                $sql = "SELECT idColaboradores,nome FROM campanha_agasalho.colaboradores";
-                                $resultt = mysqli_query($conn, $sql);
-                                if($resultt){
-                                $sql1 = "select nome from colaboradores where idColaboradores = $gerente";
-                                $result2 = mysqli_query($conn, $sql1);
-                                $row2 = mysqli_fetch_array($result2, MYSQLI_NUM);
-                                echo "<option disabled selected> $row2[0] <i class='uil uil-sort'></i></option>";
-                                while ($roww = mysqli_fetch_array($resultt, MYSQLI_NUM)){
-                            ?>
-                            <option value="<?php echo "$roww[1]";?>"><?php echo "$roww[1]";?></option>
-                            <?php  
-                            }
-                            }
-                            ?>
-                           
-                        </select>
-                        <!-- <input type="text" class="input-field" name="estado" placeholder=" " required>
-                        <label class="form-label">Estado</label> -->
+                    <input type="hidden" name="gerente" value="<?php echo $row[9];?>">
+                    <input type="hidden" name="codigo" value="<?php echo $codigo;?>">
                         
                     </div>
                     <div class="form-div horario">
@@ -194,7 +175,7 @@ include_once "conexao.php";
                         <div class="image-add">
                             
                             <label for="imagem">Imagem:</label>
-                            <input type="file" name="arquivo" value="<?php echo $row[1]?>">
+                            <input type="file" name="arquivo" value="">
                             
 
                         </div>

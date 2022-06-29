@@ -7,21 +7,44 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <script src="js/script.js" defer></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
     <title>Doações</title>
 </head>
 
 <body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="../html/"><i class="uil uil-adjust-circle"></i></a>
+        </div>
+        <div class="links">
+            <div class="link">
+                <a href="../html/index.html" class="a-link"><span class="text-link">Home</span></a>
+            </div>
+            <div class="link">
+                <a href="../html/about.html" class="a-link"><span class="text-link">Sobre nós</span></a>
+            </div>
+            <div class="link dropdown">
+                <a href="" class="a-link">
+                    <span class="text-link">Procurar</span>
+                </a>
+                <div class="dropdown dropdown-content">
+                    <a href="../php/procurar.php" class="a-link"><span class="text-link">Centros</span></a>
+                    <a href="../php/p_prod.php" class="a-link"><span class="text-link">Itens</span></a>
+                </div>
+            </div>
+            <div class="link">
+                <a href="../html/login.php" class="a-link"><span class="text-link">Entrar</span></a>
+            </div>
+            <div class="link-alt">
+                <a href="../html/login.php" class="a-link"><span class="text-link-alt">Registrar</span></a>
+            </div>
+        </div>
+    </div>
     
-    <?php
-    include_once '../html/header.php';
-    
-    
-    if(isset($_SESSION['idC'])){
-        $idC = $_SESSION['idC'];
-    ?>
-    <a href="incluir_centro.php?idcolab=<?php echo $idC?>">
+
+    </div>
+    <a href="incluir_centro.php">
         <div class='button-sqr button-add'>
             <i class="uil uil-plus"></i>
             <div class="text-button-add">
@@ -32,17 +55,10 @@
         </div>
     </a>
     <?php
-    }
-    else{
-        $idC=null;
-    }
-
-    ?>
-    <?php
-        
-        teste($idC);
+        session_start();
+        teste();
         echo "</div>";
-        function teste($idC) {
+        function teste() {
         echo "<div class='consulta' colspan='2'>";
         $i = 0;
         include_once "conexao.php";
@@ -53,33 +69,17 @@
             $uf = $uf."%";
             $cidade = $cidade."%";
             if(($uf!="") && ($cidade!="")){
-                if(isset($idC)){
-                    $sql = "SELECT * FROM centros where (cidade like '$cidade') and (estado like '$uf') and gerente=$idC union SELECT * FROM centros where (cidade like '$cidade') and (estado like '$uf') and gerente!=$idC";
-                }
-                else{
-                    $sql = "SELECT * FROM centros where (cidade like '$cidade') and (estado like '$uf')";
-                }
+                 
+                $sql = "SELECT * FROM centros where (cidade like '$cidade') and (estado like '$uf')";
 
             }
-
             else{
-                if(isset($idC)){
-                    $sql = "SELECT * FROM centros where (cidade like '$cidade') or (estado like '$uf') and gerente=$idC union SELECT * FROM centros where (cidade like '$cidade') or (estado like '$uf') gerente!=$idC";
-                }
-                else{
-                    $sql = "SELECT * FROM centros where (cidade like '$cidade') or (estado like '$uf')";
-                }
-
+                $sql = "SELECT * FROM centros where (cidade like '$cidade') or (estado like '$uf')";
             }
         }
 
         else{
-            if(isset($idC)){
-                $sql = "SELECT * FROM centros where gerente=$idC union SELECT * FROM centros where gerente!=$idC";
-            }
-            else{
-                $sql = "SELECT * FROM centros";
-            }
+            $sql = "SELECT * FROM centros";
         }
     
         
@@ -129,20 +129,11 @@
                         ?>
                         <div class="muni">
                             <div class="image">
-                                <?php
-                                    if(empty($row[1])){
-                                ?>
-                                        <i class="uil uil-building"></i>
-                                <?php
-                                    } else {
-                                ?>
-                                        <img src="<?php echo $row[1]?>" alt="Foto do Centro" class="foto-centro">
-                                <?php
-                                    }
-                                ?>
+                                <i class="uil uil-building"></i>
+                                <?php echo $row[1]?>
                             </div>
                             <div class="infos">
-                                <div class="infos-end">
+                                <div class="infos-infos">
                                     <label class="subtitle">Endereço</label>
             
                                     <div class="info">
@@ -163,53 +154,37 @@
                                         $observacao=$row[8]?>
                                     </div>
                                 </div>
-                                <div class="infos-doa">
+                            </div>
+                            <div class="infos">
+                                <div class="infos-infos">
                                     <label class="subtitle">Informações de Doação</label>
             
-                                    <div class="info itens">
-                                        Itens:&nbsp;<?php 
+                                    <div class="info">
+                                        Itens: <?php 
                                         $itens2 = "";
                                         if($row[12]=="S"){
-                                            // $itens2 = "Roupas";
-                                            echo "<div class='item-class'>";
-                                            echo "<div class='roupa'>Roupa 👚</div>";
-                                            echo "</div>";
+                                            $itens2 = "Roupas";
                                         }
                                         if($row[13]=="S"){
-                                            // $itens2 = $itens2."Comidas";
-                                            echo "<div class='item-class'>";
-                                            echo "<div class='comida'>Comida 🍕</div>";
-                                            echo "</div>";
+                                            $itens2 = $itens2."Comidas";
                                         }
                                         if($row[14]=="S"){
-                                            // $itens2 = $itens2."Remédios";
-                                            echo "<div class='item-class'>";
-                                            echo "<div class='remedio'>Remédio 💊</div>";
-                                            echo "</div>";
+                                            $itens2 = $itens2."Remédios";
                                         }
                                         echo $itens2;
                                         ?>
                                     </div>
-                                    <div class="info itens">
+                                    <div class="info">
                                         Meios de doação: <?php 
                                         $meioss="";
                                         if($row[15]=="S"){
-                                            // $meioss = "No local";
-                                            echo "<div class='item-class'>";
-                                            echo "<div class='nolocal'>No Local 🚩</div>";
-                                            echo "</div>";
+                                            $meioss = "No local";
                                         }
                                         if($row[16]=="S"){
-                                            // $meioss = $meioss."Agendar horário";
-                                            echo "<div class='item-class'>";
-                                            echo "<div class='agenhorario'>Agen. Horário ⏰</div>";
-                                            echo "</div>";
+                                            $meioss = $meioss."Agendar horário";
                                         }
                                         if($row[17]=="S"){
-                                            // $meioss = $meioss."Buscamos pra você";
-                                            echo "<div class='item-class'>";
-                                            echo "<div class='delivery'>Delivery 🚚</div>";
-                                            echo "</div>";
+                                            $meioss = $meioss."Buscamos pra você";
                                         }
                                         echo $meioss;
                                         ?>
@@ -233,29 +208,31 @@
                         </div>
                         <?php
                         if(isset($_SESSION['idC'])){
-                            if($_SESSION['idC'] == $row[9]){
+                        if($_SESSION['idC'] == $row[9]){
                         ?>
-                                <div class="buttons">
-                                    <a href="alterar_centro.php?codigo=<?php echo $row[0]?>">
-                                        <div class="button-edit button button-alt">
-                                            <i class="uil uil-pen"></i>
-                                            Editar
-                                        </div>
-                                    </a>
-                                    <a href="excluircentro.php?codigo=<?php echo $row[0];?>">
-                                        <div class="button-delete button button-alt">
-                                            <i class="uil uil-trash-alt"></i>
-                                            Excluir
-                                        </div>
-                                    </a>
+                        <div class="buttons">
+                            <a href="alterar_centro.php?codigo=<?php echo $row[0]?>">
+                                <div class="button-edit button button-alt">
+                                    <i class="uil uil-pen"></i>
+                                    Editar
                                 </div>
-                            <?php
-                            }
-                        }
+                            </a>
+                            <a href="excluircentro.php?codigo=<?php echo $row[0];?>">
+                                <div class="button-delete button button-alt">
+                                    <i class="uil uil-trash-alt"></i>
+                                    Excluir
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <?php
+                    }
+                }
                     ?>
+                    <div class="box-behind">
+        
+                    </div>
                 </div>
-                <div class="box-behind"></div>
-            </div>
             </div>
         <?php
             }  
@@ -267,21 +244,6 @@
         }
     echo "</div>"
     ?>
-    <!-- <div class="preview-geral">
-        <div class="preview">
-            <div>
-                <div class="preview-image" onclick="Preview">
-                    <div class="fechar">
-                        <i class="uil uil-times"></i>
-                    </div>
-                    <img src="<?php echo $row[1]?>" alt="">
-                </div>
-            </div>
-            <div class="preview-content">
-
-            </div>
-        </div>
-    </div> -->
     <script src="../js/procurar.js"></script>
 </body>
 </html>

@@ -20,29 +20,7 @@ session_start();
 
 
     <!-- NAVBAR -->
-    <div class="navbar">
-        <div class="logo">
-            <a href="../html/"><i class="uil uil-adjust-circle"></i></a>
-        </div>
-        <div class="links">
-            <div class="link">
-                <a href="about.html" class="a-link"><span class="text-link">Sobre nós</span></a>
-            </div>
-            <div class="link dropdown">
-                <a href="" class="a-link"><span class="text-link">Procurar</span></a>
-                <div class="dropdown dropdown-content">
-                    <a href="../php/procurar.php" class="a-link"><span class="text-link">Centros</span></a>
-                    <a href="../php/p_prod.php" class="a-link"><span class="text-link">Itens</span></a>
-                </div>
-            </div>
-            <div class="link">
-                <a href="../html/login.php" class="a-link"><span class="text-link">Entrar</span></a>
-            </div>
-            <div class="link">
-                <a href="../html/login.php" class="a-link"><span class="text-link-alt">Registrar</span></a>
-            </div>
-        </div>
-    </div>
+    <?php include_once '../html/header.html';?>
 
 
     <div class="body-container">

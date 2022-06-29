@@ -102,28 +102,11 @@
                         <input type="text" class="input-field" name="observacao" placeholder=" " required>
                         <label class="form-label">Observação</label>
                     </div>
-                    
-                    <div class="form-div">
-                        <select name="gerente" id="gerente" class="select input-field">
-                            <option disabled selected>Selecione um Gerente<i class="uil uil-sort"></i></option>
-                            <?php
-                            include_once 'conexao.php';
-                                $sql = "SELECT idColaboradores,nome FROM campanha_agasalho.colaboradores";
-                                $result = mysqli_query($conn, $sql);
-                                if($result){
-                                while ($row = mysqli_fetch_array($result, MYSQLI_NUM)){
-                            ?>
-                            <option value="<?php echo "$row[1]";?>"><?php echo "$row[1]";?></option>
-                            <?php  }
-                                }
-                                
-                            ?>
-                            
-                        </select>
-                        <!-- <input type="text" class="input-field" name="estado" placeholder=" " required>
-                        <label class="form-label">Estado</label> -->
-                        
-                    </div>
+                    <?php
+                    $idC = $_GET['idcolab'];
+                    ?>
+                   <input type="hidden" name="gerente" value="<?php echo $idC;?>">
+                   
                     <div class="form-div horario">
                         <input type="time" class="input-field" name="hab" placeholder=" " required>
                         <label class="form-label">Horario de Abertura</label>

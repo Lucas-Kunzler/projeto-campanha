@@ -13,44 +13,27 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="logo">
-            <a href="../html/"><i class="uil uil-adjust-circle"></i></a>
-        </div>
-        <div class="links">
-            <div class="link">
-                <a href="../html/index.html" class="a-link"><span class="text-link">Home</span></a>
-            </div>
-            <div class="link">
-                <a href="../html/about.html" class="a-link"><span class="text-link">Sobre nós</span></a>
-            </div>
-            <div class="link dropdown">
-                <a href="" class="a-link"><span class="text-link">Procurar</span></a>
-                <div class="dropdown dropdown-content">
-                    <a href="../php/procurar.php" class="a-link"><span class="text-link">Centros</span></a>
-                    <a href="../php/p_prod.php" class="a-link"><span class="text-link">Itens</span></a>
+    
+    <?php
+    include_once '../html/header.html';
+    session_start();
+    
+    if(isset($_SESSION['idC'])){
+    ?>
+        <a href="incluir_item.php">
+            <div class='button-sqr button-add'>
+                <i class="uil uil-plus"></i>
+                <div class="text-button-add">
+                    <p style="white-space: nowrap;">
+                        Adicionar Item
+                    </p>
                 </div>
             </div>
-            <div class="link">
-                <a href="../html/login.php" class="a-link"><span class="text-link">Entrar</span></a>
-            </div>
-            <div class="link">
-                <a href="../html/login.php" class="a-link"><span class="text-link-alt">Registrar</span></a>
-            </div>
-        </div>
-    </div>
-
-    <a href="incluir_item.php">
-        <div class='button-sqr button-add'>
-            <i class="uil uil-plus"></i>
-            <div class="text-button-add">
-                <p style="white-space: nowrap;">
-                    Adicionar Item
-                </p>
-            </div>
-        </div>
-    </a>
-
+        </a>
+<?php
+        }
+        
+?>
     <form action="p_prod.php"method="post">
         <div class="divBusca">
             <div class="input">
@@ -59,7 +42,28 @@
             </div>
             <div class="input">
                 <label>Categoria:</label>
-                <input type="text" class="input field" name="categoria">
+                <select name="categoria" id="categoria" class="select input field">
+                        <option disabled selected value="empty">Selecione</option>
+                        <option value="roupa">Roupas</option>
+                        <option value="comida">Comidas</option>
+                        <option value="remedio">Remédios</option>
+                </select>
+            </div>
+            <div class="input">
+                <label>Centro:</label>
+                <select name="centro" id="centro" class="select input field">
+                        <option disabled selected>Selecione</option>
+                        <?php 
+                        include_once "conexao.php";
+                        $sql1 = "select idCentros, nome from centros group by idCentros";
+                        $result1 = mysqli_query($conn, $sql1);
+                        while ($row1 = mysqli_fetch_array($result1, MYSQLI_NUM)){
+                                ?>
+                                <option value="<?php echo "$row1[0]";?>"><?php echo "$row1[1]";?></option>
+                                <?php  
+                                }
+                                ?>
+                </select>
             </div>
             <button>
                 Pesquisar
@@ -69,30 +73,40 @@
     </form>
     
     <?php
-        teste();
+        
         echo "</div>";
-
-        function teste() {
         echo "<div class='consulta'>";
-        $i = 0;
-        include_once "conexao.php";
 
-        if(isset($_POST['nome']) || isset($_POST['categoria'])){
+        if(isset($_POST['nome']) || isset($_POST['categoria'])|| isset($_POST['centro'])){
             $nome = $_POST['nome'];
-            $categoria = $_POST['categoria'];  
-            $nome = $nome."%";
-            $categoria = $categoria."%";  
-            if(($nome!="") && ($categoria!="")){
-                $sql = "SELECT * FROM produto where (categoria like '$categoria') and (nome like '$nome')";
+            if(isset($_POST['categoria'])){
+                $categoria = $_POST['categoria'];  
             }
             else{
-                $sql = "SELECT * FROM produto where (categoria like '$categoria') or (nome like '$nome')";
+                $categoria="";
+                        }
+            $centro = $_POST['centro'];  
+            $nome = $nome."%";
+            // $categoria = $categoria."%";  
+            // $centro = $centro."%";  
+            $sql1 = "select idCentros, nome from centros group by idCentros";
+            $result1 = mysqli_query($conn, $sql1);
+            $row1 = mysqli_fetch_array($result1, MYSQLI_NUM);
+            if(($nome!="") && ($categoria!="")&&($centro!="")){
+                $sql = "SELECT * FROM produto where ($categoria like 'S') and (nome like '$nome') and (fkidcentro = $centro) order by fkidcentro";
+            }
+            else if(($nome!="") && ($categoria!="")){
+                $sql = "SELECT * FROM produto where ($categoria like 'S') and (nome like '$nome') order by nome";
+            }
+            
+            else if(($categoria!="")&&($centro!="")){
+                $sql = "SELECT * FROM produto where ($categoria like 'S') and (fkidcentro = $centro) order by fkidcentro";
             }
         }
 
         
         else{
-            $sql = "SELECT * FROM produto";
+            $sql = "SELECT * FROM produto order by fkidcentro";
 
         }
     
@@ -102,7 +116,6 @@
             echo  "<script>alert('Não foi possível conectar ao Banco de Dados!');</script>";
             header('Location: p_prod.php');
         }
-        
 
     ?>
     <div class="table-itens">
@@ -110,13 +123,15 @@
             <thead>
                 <tr class="thead">
                     <th>Item</th>
+                    <th>Centro</th>
+                    <th>Setor</th>
                     <th>Quantidade</th>
                     <th>Tamanho</th>
                     <th>Sexo</th>
-                    <th>Descrição</th>
                     <th>Categoria</th>
-                    <th>Centro</th>
-                    <th>Setor</th>
+                    <th>Descrição</th>
+                    
+                    
                 </tr>
             </thead>
             <tbody>
@@ -124,13 +139,33 @@
         // verifica os registros retornados
         if($result){
         while ($row = mysqli_fetch_array($result, MYSQLI_NUM)){
+                $sql1 = "select * from centros where idCentros = $row[9] order by idCentros";
+                $result1 = mysqli_query($conn, $sql1);
+                $row1 = mysqli_fetch_array($result1, MYSQLI_NUM);
                 ?>
                 <tr>
-                    <td class="table-cell"><?php echo $row[1];?></td>
+                    <td class="table-cell item">
+                        <div class="-table-item">
+                            <?php echo $row[1];?>
+                        </div>
+                        <div class="buttons">
+                            <a href="alterar_item.php?codigo=<?php echo $row[0]?>">
+                                <div class="button-edit button button-alt">
+                                    <i class="uil uil-pen"></i>
+                                </div>
+                            </a>
+                            <a href="excluir_item.php?codigo=<?php echo $row[0];?>">
+                                <div class="button-delete button button-alt">
+                                    <i class="uil uil-trash-alt"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </td>
+                    <td class="table-cell"><?php echo $row1[2];?></td>
+                    <td class="table-cell"><?php echo $row[10];?></td>
                     <td class="table-cell"><?php echo $row[2];?></td>
                     <td class="table-cell"><?php echo $row[3];?></td>
-                    <td class="table-cell"><?php echo $row[4];?></td>
-                    <td class="table-cell"><?php echo $row[5];?></td>
+                    <td class="table-cell"><?php echo $row[4];?></td>   
                     <td class="table-cell">
                         <?php
                             if($row[6] == 'S'){
@@ -154,8 +189,7 @@
                             };
                         ?>
                     </td>
-                    <td class="table-cell"><?php echo $row[7];?></td>
-                    <td class="table-cell"><?php echo $row[8];?></td>
+                    <td class="table-cell"><?php echo $row[5];?></td>   
                 </tr>
                 <?php
                 }  
@@ -170,7 +204,7 @@
         </table>
     </div>
     <?php mysqli_close($conn);
-    }
+    
     echo "</div>"
     ?>
 

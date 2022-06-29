@@ -35,6 +35,19 @@
             </div>
         </div>
     </div>
+    <?php
+    include_once "conexao.php";
+    $codigo = $_GET['codigo'];
+    $sql = "SELECT * FROM centros where idCentros = $codigo";
+    $result = mysqli_query($conn, $sql);
+    if (!$conn)
+    {
+        echo  "<script>alert('Não foi possível conectar ao Banco de Dados!');</script>";
+        header('Location: p_prod.php');
+    }
+    $row = mysqli_fetch_array($result, MYSQLI_NUM);
+    $gerente = $row[9];
+    ?>
     <div class="centro-popup">
         <div class="popup">
             <form action="inserir_item.php" method="post" enctype="multipart/form-data">
@@ -42,7 +55,7 @@
                 <hr>
                 <div class="form-divs">
                     <div class="form-div nome">
-                        <input type="text" class="input-field" name="item" placeholder=" " required>
+                        <input type="text" class="input-field" name="item" placeholder=" " value="<?php echo $row[0]?>"required>
                         <label class="form-label">Item</label>
                     </div>
                     <div class="form-div">

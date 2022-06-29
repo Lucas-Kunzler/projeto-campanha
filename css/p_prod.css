@@ -135,30 +135,93 @@ body{
 
 .input {
     font-size: 16px;
-    font-weight: 600;
-    border-radius: 5px;
-    border: none;
+    font-weight: 500;
+    border-radius: .5rem;
+    /* border: none; */
     margin: auto 5px;
+}
+
+.input label {
+    font-weight: 500;
+  }
+
+.field{
+    padding: 5px;
+    padding-left: 10px;
+    border: 1px solid #999;
+}
+
+.field:focus {
+    border: 1px solid var(--primary-color);
+    background: #f0f4f6;
+    outline: none;
 }
 
 .divBusca {
     display: flex;
-    margin: 10px 0;
+    margin-top: 80px;
     width: 100%;
-    height: 50px;
-    background: var(--background-color);
+    height: 55px;
+    border-top: 1px solid var(--border-color-light);
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+button {
+    width: auto;
+    font-size: 1rem;
+    height: 2.5rem;
+    background: var(--primary-color);
+    color: var(--sidebar-color);
+  
+    border-radius: .5rem;
+    border: none;
+  
+    padding: 3px 15px;
+    margin: auto 10px;
+  
+    outline: 3px var(--red-button);
+    transition: var(--tran-02);
+}
+
+button:hover {
+    /* box-shadow: inherit 0px 0px 7px 2px rgba(80, 80, 80, 0.3); */
+    transition: var(--tran-02);
+    background: var(--primary-color-dark);
+    cursor: pointer;
+}
+
+.buttons {
+    display: inline-flex;
+    margin: auto 0;
+    right: 10px;
+}
+
+.buttons .button {
+    padding: 7px;
+    margin-left: 10px;
+    border-radius: 0.25rem;
+}
+
+.button-edit {
+    background: var(--blue-button);
+    color: var(--body-color);
+}
+
+.button-delete {
+    background: var(--red-button);
+    color: var(--body-color);
 }
 
 .form {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 .table-itens{
-    width: 70%;
+    width: 100rem;
     height: 47rem;
     
-    margin: 70px auto;
+    margin: 30px auto;
     vertical-align: middle;
     overflow-y: auto;
     
@@ -175,6 +238,13 @@ body{
     top: 0;
 }
 
+.table-cell.item {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
 
 .table .roupa {
     background-color: #FAA8A2;
@@ -205,8 +275,8 @@ body{
 
 .table th, td{
     padding: 10px;
-    width: auto;
     padding-left: 20px;
+    width: auto;
 }
 
 .table th {
