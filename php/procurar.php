@@ -15,10 +15,9 @@
 <body>
     
     <?php
-    include_once '../html/header.php';
-    
-    
+    session_start();
     if(isset($_SESSION['idC'])){
+        include_once '../html/header1.html';
         $idC = $_SESSION['idC'];
     ?>
     <a href="incluir_centro.php?idcolab=<?php echo $idC?>">
@@ -34,9 +33,9 @@
     <?php
     }
     else{
+        include_once '../html/header.html';
         $idC=null;
     }
-
     ?>
     <?php
         
