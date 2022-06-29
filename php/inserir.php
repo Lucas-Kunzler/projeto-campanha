@@ -8,6 +8,9 @@
     $banco = "campanha_agasalho";
     
     $conn = mysqli_connect($localhost, $user, $password, $banco);
+    if (empty($_FILES['arquivo']['size']) != true){ 
+
+    
     $arquivo = $_FILES["arquivo"];
     $nome_temporario=$_FILES["arquivo"]["tmp_name"];
     $nome_real=$_FILES["arquivo"]["name"];
@@ -26,7 +29,11 @@
 
         $ArqImp = "../centros/";
         copy($nome_temporario,"../centros/$nome_final");
-        
+        $nome_final = "../centros/".$nome_final;
+    }
+    else{
+        $nome_final = "";
+    }
                 $nome = $_POST['nome'];
                 $estado = $_POST['estado'];
                 $cidade = $_POST['cidade'];
@@ -46,7 +53,7 @@
                 
                 $horario_abertura = $_POST['hab'];
                 $horario_fechamento = $_POST['hfe'];              
-                $sql = "INSERT INTO `campanha_agasalho`.`centros` (`foto`, `nome`, `estado`, `cidade`, `bairro`, `rua`, `numero`, `observacao`, `gerente`, `horario_abertura`, `horario_fechamento`, `roupa`, `comida`, `remedio`, `nolocal`, `agenhorario`, `buscamosvc`) VALUES ('../centros/$nome_final','$nome','$estado','$cidade','$bairro','$rua',$numero, '$observacao',$gerente,'$horario_abertura','$horario_fechamento','$flroupas','$flcomidas','$flremedios','$flnolocal','$flagenhorario','$flbuscamospravc');";
+                $sql = "INSERT INTO `campanha_agasalho`.`centros` (`foto`, `nome`, `estado`, `cidade`, `bairro`, `rua`, `numero`, `observacao`, `gerente`, `horario_abertura`, `horario_fechamento`, `roupa`, `comida`, `remedio`, `nolocal`, `agenhorario`, `buscamosvc`) VALUES ('$nome_final','$nome','$estado','$cidade','$bairro','$rua',$numero, '$observacao',$gerente,'$horario_abertura','$horario_fechamento','$flroupas','$flcomidas','$flremedios','$flnolocal','$flagenhorario','$flbuscamospravc');";
                 $result = mysqli_query($conn, $sql);
                 if($result){
                     

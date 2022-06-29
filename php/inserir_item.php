@@ -11,7 +11,6 @@
 
 
         $item = $_POST['item'];
-        $centro = $_POST['centro'];
         $setor = $_POST['setor'];
         $quant = $_POST['quant'];
         $tam = $_POST['tam'];
@@ -19,25 +18,26 @@
         $categoria = $_POST['categoria'];
         $descricao = $_POST['descricao'];
         $fkidcentro = $_POST['centro'];
-        $roupas = "";
-        $comidas = "";
-        $remedios = "";
-        if($categoria=="roupa"){
-            $roupas = "S";
-            $comidas = "N";
-            $remedios = "N";
+        $categoria = $_POST['categoria'];
+        $flroupas ="";
+        $flcomidas = "";
+        $flremedios = "";
+        if($categoria=="roupas"){
+            $flroupas ="S";
+            $flcomidas = "N";
+            $flremedios = "N";
         }
-        else if($categoria=="comida"){
-            $roupas = "N";
-            $comidas = "S";
-            $remedios = "N";
+        else if($categoria=="comidas"){
+            $flroupas ="N";
+            $flcomidas = "S";
+            $flremedios = "N";
         }
         else{
-            $roupas = "N";
-            $comidas = "N";
-            $remedios = "S";
+            $flroupas ="N";
+            $flcomidas = "N";
+            $flremedios = "S";
         }
-        $sql = "INSERT INTO `campanha_agasalho`.`produto` (`nome`, `qtde`, `tamanho`, `genero`, `descricao`, `roupa`, `comida`, `remedio`, `fkidcentro`, `setor`) VALUES ('$item', '$quant', '$tam', '$sexo', '$descricao', '$roupas', '$comidas', '$remedios', '$fkidcentro', '$setor');";
+        $sql = "INSERT INTO `campanha_agasalho`.`produto` (`nome`, `qtde`, `tamanho`, `genero`, `descricao`, `roupa`, `comida`, `remedio`, `fkidcentro`, `setor`) VALUES ('$item', '$quant', '$tam', '$sexo', '$descricao', '$flroupas', '$flcomidas', '$flremedios', '$fkidcentro', '$setor');";
         $result = mysqli_query($conn, $sql);
         if($result){
             
@@ -45,6 +45,7 @@
             
         } else{
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+            
         }
         header("location: p_prod.php");
         mysqli_close($conn);

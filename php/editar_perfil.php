@@ -10,7 +10,7 @@
     <script type="text/javascript">
         function Nova()
         {
-            location.href=" ../html/index.php"
+            location.href="../html/index.php"
         }
     </script>
 </head>

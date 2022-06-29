@@ -111,7 +111,7 @@
             }
             // $categoria = $categoria."%";  
             // $centro = $centro."%";  
-            $sql = $sql."order by fkidcentro";
+            
             $sql1 = "select idCentros, nome from centros group by idCentros";
             $result1 = mysqli_query($conn, $sql1);
             $row1 = mysqli_fetch_array($result1, MYSQLI_NUM);

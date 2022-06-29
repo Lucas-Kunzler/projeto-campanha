@@ -93,15 +93,15 @@
                             <legend>Categoria</legend>
                             <div class="fieldset-divs">
                                 <div class="fieldset-div">
-                                    <input type="radio" name="roupas" <?=($row[6]=='S'?'checked':'')?> id="categoria1" class="roupa" value="S" onClick="SexoChange(this)">
+                                    <input type="radio" name="categoria" <?=($row[6]=='S'?'checked':'')?> id="categoria1" class="roupa" value="roupas" onClick="SexoChange(this)">
                                     <label>Roupa 👚</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="radio" name="comidas" <?=($row[7]=='S'?'checked':'')?> id="categoria2" value="S" onClick="SexoChange(this)">
+                                    <input type="radio" name="categoria" <?=($row[7]=='S'?'checked':'')?> id="categoria2" value="comidas" onClick="SexoChange(this)">
                                     <label>Comida 🍕</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="radio" name="remedios" <?=($row[8]=='S'?'checked':'')?> id="categoria3" value="S" onClick="SexoChange(this)">
+                                    <input type="radio" name="categoria" <?=($row[8]=='S'?'checked':'')?> id="categoria3" value="remedios" onClick="SexoChange(this)">
                                     <label>Remédio 💊</label>
                                 </div>
                             </div>

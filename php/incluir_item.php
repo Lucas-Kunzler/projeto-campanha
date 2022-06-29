@@ -15,32 +15,17 @@
     </script>
 </head>
 <body onload="SexoChange()">
-    <div class="navbar">
-        <div class="logo">
-            <a href="../html/"><i class="uil uil-adjust-circle"></i></a>
-        </div>
-        <div class="links">
-            <div class="link">
-                <a href="../html/index.html" class="a-link"><span class="text-link">Home</span></a>
-            </div>
-            <div class="link">
-                <a href="../html/about.html" class="a-link"><span class="text-link">Sobre nós</span></a>
-            </div>
-            <div class="link dropdown">
-                <a href="" class="a-link"><span class="text-link">Procurar</span></a>
-                <div class="dropdown dropdown-content">
-                    <a href="../php/procurar.php" class="a-link"><span class="text-link">Centros</span></a>
-                    <a href="../php/p_prod.php" class="a-link"><span class="text-link">Itens</span></a>
-                </div>
-            </div>
-            <div class="link">
-                <a href="../html/login.php" class="a-link"><span class="text-link">Entrar</span></a>
-            </div>
-            <div class="link">
-                <a href="../html/login.php" class="a-link"><span class="text-link-alt">Registrar</span></a>
-            </div>
-        </div>
-    </div>
+<?php
+    session_start();
+    if(isset($_SESSION['idC'])){
+        include_once '../html/header1.php';
+        $idC = $_SESSION['idC'];
+    }
+    else{
+        include_once '../html/header.html';
+        $idC=null;
+    }
+    ?>
     <div class="centro-popup">
         <div class="popup">
             <form action="inserir_item.php" method="post" enctype="multipart/form-data">
@@ -52,23 +37,25 @@
                         <label class="form-label">Item</label>
                     </div>
                     <div class="form-div">
-                        <select name="centro" id="centro" class="select input-field">
-                    <?php
-                    include_once "conexao.php";
-                    session_start();
-                                $codigo = $_SESSION['idC'];
-                                $sql1 = "select idCentros, nome from centros where gerente = $codigo";
-                                $result2 = mysqli_query($conn, $sql1);
+                        <select name="centro" value="" id="centro" class="select input-field" required>
+                        <option disabled selected> Selecione o Centro <i class='uil uil-sort'></i></option>
+                            <?php
+                                include_once "conexao.php";
+                                session_start();
+                                        $codigo = $_SESSION['idC'];
+                                        $sql1 = "select idCentros, nome from centros where gerente = $codigo";
+                                        $result2 = mysqli_query($conn, $sql1);
 
-                                echo "<option disabled selected> Selecione o Centro <i class='uil uil-sort'></i></option>";
-                                while ($row2 = mysqli_fetch_array($result2, MYSQLI_NUM)){
+                                        
+                                        while ($row2 = mysqli_fetch_array($result2, MYSQLI_NUM)){
+                                    ?>
+                                    <option value="<?php echo "$row2[0]";?>"><?php echo "$row2[1]";?></option>
+                                    <?php  
+                                    $centrosss= $row2[0];
+                                    }
                             ?>
-                            <option value="<?php echo "$row2[0]";?>"><?php echo "$row2[1]";?></option>
-                            <?php  
-                            }
-                    ?>
-                    </select>
-                </div>
+                        </select>
+                    </div>
                     <div class="form-div">
                         <input type="text" class="input-field" name="setor" placeholder=" " required>
                         <label class="form-label">Setor/Caixa</label>
@@ -86,15 +73,15 @@
                             <legend>Categoria</legend>
                             <div class="fieldset-divs">
                                 <div class="fieldset-div">
-                                    <input type="radio" name="categoria" id="categoria1" class="roupa" value="roupa" onClick="SexoChange(this)">
+                                    <input type="radio" name="categoria" id="categoria1" class="roupa" value="roupas" required onClick="SexoChange(this)">
                                     <label>Roupa 👚</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="radio" name="categoria" id="categoria2" value="comida" onClick="SexoChange(this)">
+                                    <input type="radio" name="categoria" id="categoria2" value="comidas" onClick="SexoChange(this)">
                                     <label>Comida 🍕</label>
                                 </div>
                                 <div class="fieldset-div">
-                                    <input type="radio" name="categoria" id="categoria3" value="remedio" onClick="SexoChange(this)">
+                                    <input type="radio" name="categoria" id="categoria3" value="remedios" onClick="SexoChange(this)">
                                     <label>Remédio 💊</label>
                                 </div>
                             </div>
@@ -123,6 +110,7 @@
                         <textarea name="descricao" class="input-field" placeholder=" "></textarea>
                         <label class="form-label">Descrição</label>
                     </div>
+                    <input type="hidden" name="centro1"  value="<?php $centrosss?>">
                     </div>
                         <div class="buttons">
                             <input type="submit" class="button button2" value="Salvar" required>

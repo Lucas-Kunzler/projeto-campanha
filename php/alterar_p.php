@@ -25,7 +25,7 @@ include_once "conexao.php";
                 echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 
             }
-            header('Location: editar_perfil.php');
+            header('Location: ../html/index.php');
         }
 
         else{

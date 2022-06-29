@@ -12,10 +12,26 @@ include_once "conexao.php";
         $sexo = $_POST['sexo'];
         $descricao = $_POST['descricao'];
         $id_item = $_POST['id_item'];
-        echo '<script>alert('.$centro; echo')</script>';
-        $flroupas = empty($_POST['roupas'])?'N':'S';
-        $flcomidas = empty($_POST['comidas'])?'N':'S';  
-        $flremedios = empty($_POST['remedios'])?'N':'S';
+        $categoria = $_POST['categoria'];
+        $flroupas ="";
+        $flcomidas = "";
+        $flremedios = "";
+        if($categoria=="roupas"){
+            $flroupas ="S";
+            $flcomidas = "N";
+            $flremedios = "N";
+        }
+        else if($categoria=="comidas"){
+            $flroupas ="N";
+            $flcomidas = "S";
+            $flremedios = "N";
+        }
+        else{
+            $flroupas ="N";
+            $flcomidas = "N";
+            $flremedios = "S";
+        }
+
 		$conn = mysqli_connect($localhost, $user, $password, $banco);
         $sql = "UPDATE `campanha_agasalho`.`produto` SET `nome` = '$item', `qtde` = '$quant', `tamanho` = '$tam', `genero` = '$sexo', `descricao` = '$descricao', `roupa` = '$flroupas', `comida` = '$flcomidas', `remedio` = '$flremedios', `fkidcentro` = '$centro', `setor` = '$setor' WHERE (`idProduto` = '$id_item');";
         $result = mysqli_query($conn, $sql);
