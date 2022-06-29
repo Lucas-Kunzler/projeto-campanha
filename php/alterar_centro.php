@@ -7,6 +7,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="../css/alterar_centro.css">
+    <script type="text/javascript">
+        function Nova()
+        {
+            location.href=" procurar.php"
+        }
+    </script>
 </head>
 <body>
     <?php
@@ -186,7 +192,8 @@ include_once "conexao.php";
                     
                     <div class="buttons">
                         <input type="submit" class="button button2" value="Salvar" required>
-                        <input type="reset" class="button button-alt" value="Cancelar" required>
+                        <input type="button" class="button button-alt" value="Cancelar" onClick="Nova()">
+
                     </div>
                 </div>
             </form>

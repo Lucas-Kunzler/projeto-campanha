@@ -42,10 +42,11 @@
         if($result){
             
             echo '<script>alert("Item adicionado com sucesso!")</script>';
-            header("procurar.php");
+            
         } else{
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
         }
+        header("location: p_prod.php");
         mysqli_close($conn);
         
 ?>

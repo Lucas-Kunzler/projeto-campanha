@@ -51,9 +51,10 @@
                 if($result){
                     
                     echo '<script>alert("Centro adicionado com sucesso!")</script>';
-                    header("procurar.php");
+                    header("Location: procurar.php");
                 } else{
                     echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+                    header("Location: procurar.php");
                 }
                 mysqli_close($conn);
         

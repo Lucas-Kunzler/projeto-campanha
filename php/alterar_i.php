@@ -21,7 +21,7 @@ include_once "conexao.php";
         $result = mysqli_query($conn, $sql);
         if($result){
             echo '<script>alert("Centro alterado com sucesso!")</script>';
-            header("location: procurar.php");
+            header("location: p_prod.php");
         } else{
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
 
