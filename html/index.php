@@ -32,12 +32,7 @@
         </div>
         <div class="content-text">
             <h1>Mano já é a quinta vez que to fazendo o Homepage</h1>
-            <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi maxime voluptas fugiat quia omnis, quo mollitia non quam quidem optio cum, numquam quae deserunt accusantium. Ipsa aut ad doloribus dolorum.</h3>
-            <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi maxime voluptas fugiat quia omnis, quo mollitia non quam quidem optio cum, numquam quae deserunt accusantium. Ipsa aut ad doloribus dolorum.</h3>
-            <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi maxime voluptas fugiat quia omnis, quo mollitia non quam quidem optio cum, numquam quae deserunt accusantium. Ipsa aut ad doloribus dolorum.</h3>
-            <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi maxime voluptas fugiat quia omnis, quo mollitia non quam quidem optio cum, numquam quae deserunt accusantium. Ipsa aut ad doloribus dolorum.</h3>
-            <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi maxime voluptas fugiat quia omnis, quo mollitia non quam quidem optio cum, numquam quae deserunt accusantium. Ipsa aut ad doloribus dolorum.</h3>
-            <h3>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi maxime voluptas fugiat quia omnis, quo mollitia non quam quidem optio cum, numquam quae deserunt accusantium. Ipsa aut ad doloribus dolorum.</h3>
+            <h3>O projeto Campanha do Agasalho é uma solução desenvolvida pelos alunos do terceiro ano do Técnico de Informática do Instituto Ivoti, Lucas Kunzler e Juliano Heinle, que tem o objetivo de ajudar na logística das doações para que os doadores possam achar melhor locais de arrecadação e para que os colaboradores tenham um sistema para organizar melhor os itens, fazendo o processo de doação mais rápido e prático. O projeto Campanha do Agasalho é uma ferramenta que buscar reduzir os impactos da pobreza no Brasil, facilitando a vida nos necessitados. Para que tudo isso fosse possível, foi necessário utilizar de diversas linguagens, tais quais HTML, CSS, PHP, JavaScript e SQL, além de algumas ferramentas para a implementação do Website, como o XAMPP, MySQL e Visual Studio Code.</h3>
         </div>
         <div class="content-vertical"></div>
         <div class="content-image">

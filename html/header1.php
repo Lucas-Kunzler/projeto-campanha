@@ -45,6 +45,9 @@
                 <div class="link">
                     <a href="../php/logout.php" class="a-link"><span class="text-link">Sair</span></a>
                 </div>
+                <div class="link">
+                    <a href="../php/excluirconta.php" class="a-link"><span class="text-link">Excluir conta</span></a>
+                </div>
             </div>
         </div>
     </div>
